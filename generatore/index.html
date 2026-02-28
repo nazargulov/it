@@ -83,6 +83,69 @@
     }
     </script>
 
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Strumenti IT",
+                "item": "https://nazargulov.github.io/it/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Generatore di Numeri Casuali",
+                "item": "https://nazargulov.github.io/it/generatore/"
+            }
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "SiteNavigationElement",
+                "name": "Generatore Numeri",
+                "url": "https://nazargulov.github.io/it/generatore/"
+            },
+            {
+                "@type": "SiteNavigationElement",
+                "name": "Tombola Online",
+                "url": "https://nazargulov.github.io/it/generatore/tombola/"
+            },
+            {
+                "@type": "SiteNavigationElement",
+                "name": "Ruota della Fortuna",
+                "url": "https://nazargulov.github.io/it/generatore/ruota/"
+            },
+            {
+                "@type": "SiteNavigationElement",
+                "name": "Dado Online",
+                "url": "https://nazargulov.github.io/it/generatore/dado/"
+            },
+            {
+                "@type": "SiteNavigationElement",
+                "name": "Testa o Croce",
+                "url": "https://nazargulov.github.io/it/generatore/testa-o-croce/"
+            },
+            {
+                "@type": "SiteNavigationElement",
+                "name": "SuperEnalotto",
+                "url": "https://nazargulov.github.io/it/generatore/superenalotto/"
+            }
+        ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --green: #009246;
@@ -101,20 +164,23 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--dark);
             background: var(--white);
         }
 
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
 
         /* Header */
         header {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 15px 0;
-            position: fixed;
-            width: 100%;
+            position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: var(--shadow);
@@ -150,7 +216,7 @@
 
         /* Hero */
         .hero {
-            padding: 100px 0 40px;
+            padding: 60px 0 40px;
             text-align: center;
             background: linear-gradient(180deg, var(--green-light) 0%, var(--white) 100%);
         }
@@ -184,11 +250,18 @@
             gap: 6px;
             padding: 6px 14px;
             background: var(--white);
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 24px;
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--dark);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .hero-badge:hover {
+            border-color: var(--green);
+            box-shadow: 0 2px 8px rgba(0,146,70,0.12);
         }
 
         /* Generator Tool */
@@ -204,6 +277,17 @@
             box-shadow: var(--shadow-lg);
             max-width: 600px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(0,146,70,0.15) 0%, transparent 70%);
+            border-radius: 24px;
+            z-index: -1;
+            filter: blur(16px);
         }
 
         .tool-card h2 {
@@ -474,18 +558,29 @@
 
         .feature-card {
             background: var(--white);
-            border: 1px solid #e2e8f0;
+            border: 1.5px solid #e2e8f0;
             border-radius: 16px;
             padding: 28px;
-            transition: transform 0.2s;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
         }
 
         .feature-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
+            transform: translateY(-4px);
+            border-color: var(--green);
+            box-shadow: var(--shadow-lg);
         }
 
-        .feature-icon { font-size: 32px; margin-bottom: 12px; }
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--green-light);
+            border-radius: 12px;
+        }
 
         .feature-title {
             font-size: 1.1rem;
@@ -575,13 +670,39 @@
         footer {
             background: var(--dark);
             color: #94a3b8;
-            padding: 30px 0;
-            text-align: center;
+            padding: 40px 0 0;
             font-size: 0.85rem;
         }
 
-        footer a { color: #94a3b8; text-decoration: none; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 6px; }
+
+        footer a { color: #94a3b8; text-decoration: none; transition: color 0.2s; }
         footer a:hover { color: white; }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tricolore {
+            height: 3px;
+            background: linear-gradient(90deg, var(--green) 33.3%, var(--white) 33.3%, var(--white) 66.6%, var(--red) 66.6%);
+        }
 
         /* Altri strumenti */
         .altri-strumenti { padding: 60px 0; background: var(--light); }
@@ -600,26 +721,102 @@
 
         .strumento-card {
             background: var(--white);
-            border: 1px solid #e2e8f0;
+            border: 1.5px solid #e2e8f0;
             border-radius: 14px;
             padding: 24px;
             text-decoration: none;
             color: inherit;
             display: block;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
             text-align: center;
         }
 
         .strumento-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
+            transform: translateY(-4px);
+            border-color: var(--green);
+            box-shadow: var(--shadow-lg);
         }
 
-        .strumento-card .icon { font-size: 32px; margin-bottom: 10px; }
+        .strumento-card .icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+            width: 52px;
+            height: 52px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--green-light);
+            border-radius: 12px;
+        }
         .strumento-card .name { font-weight: 700; font-size: 0.95rem; }
 
+        /* Toggle switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--gray);
+            user-select: none;
+            margin-bottom: 20px;
+        }
+
+        .toggle-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+
+        .toggle-slider {
+            width: 44px;
+            height: 24px;
+            background: #cbd5e1;
+            border-radius: 12px;
+            position: relative;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+
+        .toggle-slider::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background: var(--green);
+        }
+
+        .toggle-switch input:checked + .toggle-slider::after {
+            transform: translateX(20px);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+        }
+
+        .breadcrumb a {
+            color: var(--gray);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover { color: var(--green); }
+        .breadcrumb span { color: var(--gray); }
+        .breadcrumb .current { color: var(--dark); font-weight: 600; }
+
         @media (max-width: 768px) {
-            .hero { padding: 80px 0 30px; }
+            .hero { padding: 40px 0 30px; }
             .hero h1 { font-size: 1.7rem; }
             .tool-card { padding: 24px; }
             .form-row { flex-direction: column; gap: 12px; }
@@ -628,6 +825,8 @@
             .features-grid { grid-template-columns: 1fr; }
             .steps { flex-direction: column; align-items: center; }
             .die { width: 60px; height: 60px; font-size: 2rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+            .nav-links { gap: 12px; }
         }
     </style>
 </head>
@@ -649,6 +848,11 @@
 
 <section class="hero">
     <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../">Strumenti IT</a>
+            <span>›</span>
+            <span class="current">Generatore di Numeri Casuali</span>
+        </nav>
         <h1>Generatore di <span>Numeri Casuali</span></h1>
         <p>Genera numeri random online in un istante. Perfetto per estrazioni, lotterie, tombole, giochi e decisioni casuali.</p>
         <div class="hero-badges">
@@ -674,14 +878,14 @@
 
 <section class="tool" id="strumento">
     <div class="tool-card">
-        <div class="tool-tabs">
-            <button class="tool-tab active" data-tab="numeri">🔢 Numeri</button>
-            <button class="tool-tab" data-tab="dadi">🎲 Dadi</button>
-            <button class="tool-tab" data-tab="moneta">🪙 Moneta</button>
+        <div class="tool-tabs" role="tablist">
+            <button class="tool-tab active" id="tab-numeri" data-tab="numeri" role="tab" aria-selected="true" aria-controls="panel-numeri">🔢 Numeri</button>
+            <button class="tool-tab" id="tab-dadi" data-tab="dadi" role="tab" aria-selected="false" aria-controls="panel-dadi">🎲 Dadi</button>
+            <button class="tool-tab" id="tab-moneta" data-tab="moneta" role="tab" aria-selected="false" aria-controls="panel-moneta">🪙 Moneta</button>
         </div>
 
         <!-- Tab: Numeri -->
-        <div class="tool-panel active" id="panel-numeri">
+        <div class="tool-panel active" id="panel-numeri" role="tabpanel" aria-labelledby="tab-numeri">
             <div class="form-row">
                 <div class="form-group">
                     <label>Minimo</label>
@@ -696,10 +900,11 @@
                     <input type="number" id="num-count" value="1" min="1" max="100">
                 </div>
             </div>
-            <div class="checkbox-row">
+            <label class="toggle-switch">
                 <input type="checkbox" id="no-duplicates">
-                <label for="no-duplicates">Senza duplicati</label>
-            </div>
+                <span class="toggle-slider"></span>
+                Senza duplicati
+            </label>
             <button class="btn-generate" onclick="generateNumbers()">Genera numeri casuali</button>
             <div class="result-box" id="result-numeri">
                 <div class="result-numbers" id="result-numbers"></div>
@@ -711,7 +916,7 @@
         </div>
 
         <!-- Tab: Dadi -->
-        <div class="tool-panel" id="panel-dadi">
+        <div class="tool-panel" id="panel-dadi" role="tabpanel" aria-labelledby="tab-dadi">
             <div class="form-row">
                 <div class="form-group">
                     <label>Numero di dadi</label>
@@ -742,7 +947,7 @@
         </div>
 
         <!-- Tab: Moneta -->
-        <div class="tool-panel" id="panel-moneta">
+        <div class="tool-panel" id="panel-moneta" role="tabpanel" aria-labelledby="tab-moneta">
             <p style="text-align:center; color:var(--gray); margin-bottom: 20px;">Lancia una moneta: Testa o Croce?</p>
             <button class="btn-generate" onclick="flipCoin()">Lancia la moneta</button>
             <div id="coin-area" style="display:none">
@@ -909,8 +1114,37 @@
 
 <footer>
     <div class="container">
-        <p>&copy; 2026 Generatore di Numeri Casuali &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="termini.html">Termini di Utilizzo</a> &middot; <a href="../">Strumenti IT</a></p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Strumenti</h4>
+                <ul>
+                    <li><a href="./">Generatore Numeri</a></li>
+                    <li><a href="tombola/">Tombola Online</a></li>
+                    <li><a href="ruota/">Ruota della Fortuna</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legale</h4>
+                <ul>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="termini.html">Termini di Utilizzo</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Altro</h4>
+                <ul>
+                    <li><a href="dado/">Dado Online</a></li>
+                    <li><a href="testa-o-croce/">Testa o Croce</a></li>
+                    <li><a href="superenalotto/">SuperEnalotto</a></li>
+                    <li><a href="../">Strumenti IT</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Generatore di Numeri Casuali</p>
+        </div>
     </div>
+    <div class="tricolore"></div>
 </footer>
 
 <script>
@@ -925,9 +1159,10 @@ function secureRandom(min, max) {
 // Tab switching
 document.querySelectorAll('.tool-tab').forEach(function(tab) {
     tab.addEventListener('click', function() {
-        document.querySelectorAll('.tool-tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.tool-tab').forEach(function(t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
         document.querySelectorAll('.tool-panel').forEach(function(p) { p.classList.remove('active'); });
         tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
         document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
     });
 });
