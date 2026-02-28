@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9782800108858107"
+         crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore di Numeri Casuali Online | Gratis e Veloce</title>
+    <meta name="description" content="Generatore di numeri casuali online gratuito. Genera numeri random, lancia dadi, estrai numeri per lotterie e tombole. Semplice, veloce, senza registrazione.">
+    <meta name="keywords" content="generatore numeri casuali, generatore di numeri casuali, genera numeri casuali, numero casuale, generatore casuale di numeri, generatore casuale numeri, numeri random, estrazione numeri casuali, generatore numeri, numero random, generatore di numeri da 1 a 10, generatore numeri casuali online">
+    <link rel="canonical" href="https://nazargulov.github.io/it/generatore/">
+
+    <meta property="og:title" content="Generatore di Numeri Casuali Online | Gratis">
+    <meta property="og:description" content="Genera numeri casuali online. Gratis, veloce, senza registrazione. Dadi, lotterie, tombole e altro.">
+    <meta property="og:url" content="https://nazargulov.github.io/it/generatore/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Generatore di Numeri Casuali",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Tutti",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "description": "Generatore di numeri casuali online gratuito. Genera numeri random, lancia dadi, estrai numeri per lotterie e tombole.",
+        "inLanguage": "it",
+        "url": "https://nazargulov.github.io/it/generatore/"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Come funziona il generatore di numeri casuali?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Inserisci il valore minimo e massimo, scegli quanti numeri generare e clicca 'Genera'. I numeri vengono generati usando l'API Crypto del browser per la massima casualità."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "I numeri generati sono veramente casuali?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sì. Utilizziamo crypto.getRandomValues(), un generatore crittografico integrato nel browser, che produce numeri con un'entropia molto elevata."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Posso usarlo per estrazioni e lotterie?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sì, il generatore è perfetto per estrazioni, tombole, lotterie, giochi da tavolo, decisioni casuali e qualsiasi situazione in cui servano numeri random imparziali."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Funziona su smartphone?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sì, il generatore funziona su qualsiasi dispositivo: smartphone, tablet e computer. Non richiede installazione, funziona direttamente nel browser."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "I miei dati vengono salvati?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. Tutto avviene localmente nel tuo browser. Non raccogliamo né salviamo alcun dato personale. Nessuna registrazione richiesta."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --green: #009246;
+            --green-dark: #006d34;
+            --green-light: rgba(0, 146, 70, 0.08);
+            --red: #CE2B37;
+            --red-dark: #a82230;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        /* Header */
+        header {
+            background: var(--white);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--green);
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { color: var(--green); }
+
+        /* Hero */
+        .hero {
+            padding: 100px 0 40px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--green-light) 0%, var(--white) 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span { color: var(--green); }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Generator Tool */
+        .tool {
+            padding: 40px 0 60px;
+        }
+
+        .tool-card {
+            background: var(--white);
+            border: 2px solid var(--green);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tool-card h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 28px;
+            color: var(--green);
+        }
+
+        .tool-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 28px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tool-tab {
+            padding: 8px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: var(--white);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            color: var(--gray);
+        }
+
+        .tool-tab:hover { border-color: var(--green); color: var(--green); }
+        .tool-tab.active { background: var(--green); color: white; border-color: var(--green); }
+
+        .tool-panel { display: none; }
+        .tool-panel.active { display: block; }
+
+        .form-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--gray);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: border-color 0.2s;
+            background: var(--light);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .checkbox-row input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--green);
+        }
+
+        .btn-generate {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-generate:active {
+            transform: translateY(0);
+        }
+
+        .result-box {
+            margin-top: 24px;
+            padding: 24px;
+            background: linear-gradient(135deg, var(--green-light), rgba(0, 146, 70, 0.04));
+            border-radius: 14px;
+            text-align: center;
+            min-height: 80px;
+            display: none;
+            position: relative;
+        }
+
+        .result-box.visible { display: block; }
+
+        .result-numbers {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--green);
+            word-break: break-word;
+            line-height: 1.4;
+        }
+
+        .result-single {
+            font-size: 4rem;
+        }
+
+        .result-actions {
+            margin-top: 12px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn-action {
+            padding: 6px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: var(--white);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray);
+            transition: all 0.2s;
+        }
+
+        .btn-action:hover { border-color: var(--green); color: var(--green); }
+
+        /* Dice */
+        .dice-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .die {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border: 3px solid var(--green);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--green);
+            transition: transform 0.3s;
+        }
+
+        .die.rolling {
+            animation: roll 0.4s ease-out;
+        }
+
+        @keyframes roll {
+            0% { transform: rotate(0deg) scale(0.8); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .dice-total {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-top: 10px;
+        }
+
+        .dice-total span {
+            font-weight: 800;
+            color: var(--green);
+            font-size: 1.3rem;
+        }
+
+        /* Coin */
+        .coin-result {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 900;
+            transition: transform 0.5s;
+        }
+
+        .coin-result.heads {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: white;
+        }
+
+        .coin-result.tails {
+            background: linear-gradient(135deg, #94a3b8, #64748b);
+            color: white;
+        }
+
+        .coin-result.flipping {
+            animation: flip 0.5s ease-out;
+        }
+
+        @keyframes flip {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(720deg); }
+        }
+
+        .coin-label {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-top: 10px;
+        }
+
+        /* Ad placeholder */
+        .ad-slot {
+            margin: 30px auto;
+            text-align: center;
+            max-width: 728px;
+        }
+
+        /* Features */
+        .features {
+            padding: 60px 0;
+            background: var(--light);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 28px;
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon { font-size: 32px; margin-bottom: 12px; }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* How it works */
+        .how { padding: 60px 0; }
+
+        .how h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .steps {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+        }
+
+        .step { text-align: center; max-width: 250px; }
+
+        .step-num {
+            width: 48px;
+            height: 48px;
+            background: var(--green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin: 0 auto 16px;
+        }
+
+        .step-title { font-weight: 700; margin-bottom: 8px; }
+        .step-desc { font-size: 0.9rem; color: var(--gray); }
+
+        /* FAQ */
+        .faq { padding: 60px 0; background: var(--light); }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: var(--white);
+        }
+
+        .faq-q {
+            padding: 18px 24px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-q:hover { background: var(--light); }
+
+        .faq-a {
+            padding: 0 24px 18px;
+            color: var(--gray);
+            display: none;
+        }
+
+        .faq-item.open .faq-a { display: block; }
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+        .faq-arrow { transition: transform 0.2s; font-size: 0.8rem; }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        footer a { color: #94a3b8; text-decoration: none; }
+        footer a:hover { color: white; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 80px 0 30px; }
+            .hero h1 { font-size: 1.7rem; }
+            .tool-card { padding: 24px; }
+            .form-row { flex-direction: column; gap: 12px; }
+            .result-numbers { font-size: 1.6rem; }
+            .result-single { font-size: 3rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .steps { flex-direction: column; align-items: center; }
+            .die { width: 60px; height: 60px; font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <a href="../" class="logo">🎲 Generatore Numeri</a>
+        <nav class="nav-links">
+            <a href="#strumento">Generatore</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>Generatore di <span>Numeri Casuali</span></h1>
+        <p>Genera numeri random online in un istante. Perfetto per estrazioni, lotterie, tombole, giochi e decisioni casuali.</p>
+        <div class="hero-badges">
+            <span class="hero-badge">🎯 100% Gratuito</span>
+            <span class="hero-badge">🇮🇹 In italiano</span>
+            <span class="hero-badge">🔒 Nessun dato raccolto</span>
+            <span class="hero-badge">⚡ Istantaneo</span>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: top -->
+<div class="ad-slot">
+    <!-- generatore-top-banner -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="8530102684"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="tool" id="strumento">
+    <div class="tool-card">
+        <div class="tool-tabs">
+            <button class="tool-tab active" data-tab="numeri">🔢 Numeri</button>
+            <button class="tool-tab" data-tab="dadi">🎲 Dadi</button>
+            <button class="tool-tab" data-tab="moneta">🪙 Moneta</button>
+        </div>
+
+        <!-- Tab: Numeri -->
+        <div class="tool-panel active" id="panel-numeri">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Minimo</label>
+                    <input type="number" id="num-min" value="1">
+                </div>
+                <div class="form-group">
+                    <label>Massimo</label>
+                    <input type="number" id="num-max" value="100">
+                </div>
+                <div class="form-group">
+                    <label>Quantit&agrave;</label>
+                    <input type="number" id="num-count" value="1" min="1" max="100">
+                </div>
+            </div>
+            <div class="checkbox-row">
+                <input type="checkbox" id="no-duplicates">
+                <label for="no-duplicates">Senza duplicati</label>
+            </div>
+            <button class="btn-generate" onclick="generateNumbers()">Genera numeri casuali</button>
+            <div class="result-box" id="result-numeri">
+                <div class="result-numbers" id="result-numbers"></div>
+                <div class="result-actions">
+                    <button class="btn-action" onclick="copyResult()">📋 Copia</button>
+                    <button class="btn-action" onclick="generateNumbers()">🔄 Rigenera</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Dadi -->
+        <div class="tool-panel" id="panel-dadi">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Numero di dadi</label>
+                    <select id="dice-count">
+                        <option value="1">1 dado</option>
+                        <option value="2" selected>2 dadi</option>
+                        <option value="3">3 dadi</option>
+                        <option value="4">4 dadi</option>
+                        <option value="5">5 dadi</option>
+                        <option value="6">6 dadi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tipo</label>
+                    <select id="dice-sides">
+                        <option value="6" selected>D6 (classico)</option>
+                        <option value="4">D4</option>
+                        <option value="8">D8</option>
+                        <option value="10">D10</option>
+                        <option value="12">D12</option>
+                        <option value="20">D20</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn-generate" onclick="rollDice()">Lancia i dadi</button>
+            <div class="dice-container" id="dice-container"></div>
+            <div class="dice-total" id="dice-total"></div>
+        </div>
+
+        <!-- Tab: Moneta -->
+        <div class="tool-panel" id="panel-moneta">
+            <p style="text-align:center; color:var(--gray); margin-bottom: 20px;">Lancia una moneta: Testa o Croce?</p>
+            <button class="btn-generate" onclick="flipCoin()">Lancia la moneta</button>
+            <div id="coin-area" style="display:none">
+                <div class="coin-result" id="coin-result"></div>
+                <div class="coin-label" id="coin-label"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: middle -->
+<div class="ad-slot">
+    <!-- generatore-middle-banner -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="9271650355"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="features">
+    <div class="container">
+        <h2>Perch&eacute; usare il nostro generatore</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <div class="feature-title">Crittograficamente sicuro</div>
+                <div class="feature-desc">Utilizziamo crypto.getRandomValues() del browser per generare numeri con la massima entropia e casualit&agrave;.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎰</div>
+                <div class="feature-title">Estrazioni e lotterie</div>
+                <div class="feature-desc">Perfetto per tombole, SuperEnalotto, estrazioni scolastiche, giochi da tavolo e decisioni casuali.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <div class="feature-title">Funziona ovunque</div>
+                <div class="feature-desc">Nessuna installazione. Funziona su smartphone, tablet e computer direttamente nel browser.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Istantaneo</div>
+                <div class="feature-desc">Genera fino a 100 numeri casuali in un millisecondo. Nessuna attesa, nessun caricamento.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚫</div>
+                <div class="feature-title">Senza duplicati</div>
+                <div class="feature-desc">Opzione per generare numeri unici. Ideale per estrazioni dove ogni numero deve essere diverso.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-title">Nessun dato raccolto</div>
+                <div class="feature-desc">Tutto avviene localmente nel tuo browser. Non raccogliamo n&eacute; salviamo alcun dato personale.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="how">
+    <div class="container">
+        <h2>Come funziona</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-title">Imposta il range</div>
+                <div class="step-desc">Scegli il numero minimo e massimo. Ad esempio da 1 a 90 per la tombola.</div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-title">Scegli quanti numeri</div>
+                <div class="step-desc">Genera da 1 a 100 numeri alla volta. Attiva "senza duplicati" per estrazioni.</div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-title">Genera!</div>
+                <div class="step-desc">Clicca il pulsante e i numeri casuali appariranno istantaneamente. Puoi copiarli o rigenerare.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq" id="faq">
+    <div class="container">
+        <h2>Domande frequenti</h2>
+        <div class="faq-item open">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Come funziona il generatore di numeri casuali?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">Inserisci il valore minimo e massimo, scegli quanti numeri generare e clicca "Genera". I numeri vengono generati usando l'API crittografica del browser (crypto.getRandomValues) per la massima casualit&agrave;.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>I numeri generati sono veramente casuali?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">S&igrave;. Utilizziamo crypto.getRandomValues(), un generatore crittografico integrato nel browser, che produce numeri con un'entropia molto elevata. &Egrave; lo stesso sistema usato per la sicurezza delle connessioni HTTPS.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Posso usarlo per la tombola o il SuperEnalotto?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">S&igrave;! Per la tombola imposta min 1, max 90 e attiva "senza duplicati". Per il SuperEnalotto imposta min 1, max 90, quantit&agrave; 6 e "senza duplicati".</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Funziona su smartphone?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">S&igrave;, il generatore funziona su qualsiasi dispositivo: smartphone, tablet e computer. Non richiede installazione, funziona direttamente nel browser. L'interfaccia si adatta automaticamente alle dimensioni dello schermo.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>I miei dati vengono salvati?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">No. Tutto avviene localmente nel tuo browser. Non raccogliamo n&eacute; salviamo alcun dato personale. Nessuna registrazione richiesta, nessun cookie di tracciamento.</div>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: bottom -->
+<div class="ad-slot">
+    <!-- generatore-bottom-banner -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="3667969888"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Generatore di Numeri Casuali &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="termini.html">Termini di Utilizzo</a> &middot; <a href="../">Strumenti IT</a></p>
+    </div>
+</footer>
+
+<script>
+// Crypto-safe random integer in [min, max]
+function secureRandom(min, max) {
+    const range = max - min + 1;
+    const array = new Uint32Array(1);
+    crypto.getRandomValues(array);
+    return min + (array[0] % range);
+}
+
+// Tab switching
+document.querySelectorAll('.tool-tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+        document.querySelectorAll('.tool-tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.tool-panel').forEach(function(p) { p.classList.remove('active'); });
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+});
+
+// Number generator
+function generateNumbers() {
+    var min = parseInt(document.getElementById('num-min').value);
+    var max = parseInt(document.getElementById('num-max').value);
+    var count = parseInt(document.getElementById('num-count').value);
+    var noDups = document.getElementById('no-duplicates').checked;
+
+    if (isNaN(min) || isNaN(max) || isNaN(count)) return;
+    if (min > max) { var tmp = min; min = max; max = tmp; }
+    if (count < 1) count = 1;
+    if (count > 100) count = 100;
+
+    var range = max - min + 1;
+    if (noDups && count > range) count = range;
+
+    var numbers = [];
+    if (noDups) {
+        var pool = [];
+        for (var i = min; i <= max; i++) pool.push(i);
+        for (var j = 0; j < count; j++) {
+            var idx = secureRandom(0, pool.length - 1);
+            numbers.push(pool[idx]);
+            pool.splice(idx, 1);
+        }
+    } else {
+        for (var k = 0; k < count; k++) {
+            numbers.push(secureRandom(min, max));
+        }
+    }
+
+    var el = document.getElementById('result-numbers');
+    el.className = count === 1 ? 'result-numbers result-single' : 'result-numbers';
+    el.textContent = numbers.join(count <= 10 ? '   ' : ', ');
+    document.getElementById('result-numeri').classList.add('visible');
+}
+
+function copyResult() {
+    var text = document.getElementById('result-numbers').textContent;
+    navigator.clipboard.writeText(text.replace(/\s{2,}/g, ', '));
+}
+
+// Dice roller
+function rollDice() {
+    var count = parseInt(document.getElementById('dice-count').value);
+    var sides = parseInt(document.getElementById('dice-sides').value);
+    var container = document.getElementById('dice-container');
+    container.innerHTML = '';
+
+    var total = 0;
+    for (var i = 0; i < count; i++) {
+        var val = secureRandom(1, sides);
+        total += val;
+        var die = document.createElement('div');
+        die.className = 'die rolling';
+        die.textContent = val;
+        container.appendChild(die);
+    }
+
+    var totalEl = document.getElementById('dice-total');
+    totalEl.innerHTML = count > 1 ? 'Totale: <span>' + total + '</span>' : '';
+}
+
+// Coin flip
+function flipCoin() {
+    var isHeads = secureRandom(0, 1) === 0;
+    var coinEl = document.getElementById('coin-result');
+    var labelEl = document.getElementById('coin-label');
+    document.getElementById('coin-area').style.display = 'block';
+
+    coinEl.className = 'coin-result flipping';
+    setTimeout(function() {
+        coinEl.className = 'coin-result ' + (isHeads ? 'heads' : 'tails');
+        coinEl.textContent = isHeads ? 'T' : 'C';
+        labelEl.textContent = isHeads ? 'Testa!' : 'Croce!';
+    }, 500);
+}
+</script>
+
+</body>
+</html>
