@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9782800108858107"
+         crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruota della Fortuna Online — Gira e Scegli | Gratis</title>
+    <meta name="description" content="Ruota della Fortuna online gratuita. Personalizza le opzioni, gira la ruota e lascia che il destino scelga per te. Perfetta per giochi, decisioni e sorteggi.">
+    <meta name="keywords" content="ruota della fortuna online, ruota della fortuna, gira la ruota, ruota fortuna, wheel of fortune, ruota casuale, sorteggio online, decisione casuale">
+    <link rel="canonical" href="https://nazargulov.github.io/it/generatore/ruota/">
+
+    <meta property="og:title" content="Ruota della Fortuna Online — Gira e Scegli | Gratis">
+    <meta property="og:description" content="Personalizza la ruota, gira e lascia che il destino scelga. Gratis e senza registrazione.">
+    <meta property="og:url" content="https://nazargulov.github.io/it/generatore/ruota/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Ruota della Fortuna Online",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Tutti",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "description": "Ruota della Fortuna online gratuita. Personalizza le opzioni e gira la ruota.",
+        "inLanguage": "it",
+        "url": "https://nazargulov.github.io/it/generatore/ruota/"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Come funziona la Ruota della Fortuna online?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Inserisci le opzioni desiderate nella casella di testo (una per riga), poi clicca 'Gira la ruota'. La ruota girerà con una decelerazione casuale e si fermerà su un'opzione. Puoi anche usare i preset predefiniti."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Posso personalizzare le opzioni della ruota?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sì! Puoi aggiungere, rimuovere o modificare qualsiasi opzione. Scrivi le opzioni nella casella di testo, una per riga. Puoi anche usare i preset come Sì/No, Nomi, Colori o Numeri."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "La selezione è davvero casuale?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sì. La rotazione della ruota utilizza crypto.getRandomValues(), un generatore crittografico del browser, per determinare dove si ferma. Nessun algoritmo può prevedere il risultato."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quante opzioni posso inserire?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Puoi inserire da 2 a 50 opzioni. La ruota si adatta automaticamente al numero di segmenti. Per la migliore esperienza visiva, si consigliano tra 4 e 12 opzioni."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --green: #009246;
+            --green-dark: #006d34;
+            --green-light: rgba(0, 146, 70, 0.08);
+            --red: #CE2B37;
+            --red-dark: #a82230;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        header {
+            background: var(--white);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--green);
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { color: var(--green); }
+        .nav-links a.active { color: var(--green); font-weight: 700; }
+
+        .hero {
+            padding: 100px 0 40px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--green-light) 0%, var(--white) 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span { color: var(--green); }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .tool { padding: 40px 0 60px; }
+
+        .tool-card {
+            background: var(--white);
+            border: 2px solid var(--green);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .tool-card h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 28px;
+            color: var(--green);
+        }
+
+        /* Wheel */
+        .wheel-wrapper {
+            position: relative;
+            width: 340px;
+            height: 340px;
+            margin: 0 auto 20px;
+        }
+
+        .wheel-wrapper canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 14px solid transparent;
+            border-right: 14px solid transparent;
+            border-top: 28px solid var(--red);
+            z-index: 10;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .btn-generate {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-generate:active { transform: translateY(0); }
+
+        .btn-generate:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .winner-display {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--green-light), rgba(0, 146, 70, 0.04));
+            border-radius: 14px;
+            display: none;
+        }
+
+        .winner-display.visible { display: block; }
+
+        .winner-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 4px;
+        }
+
+        .winner-name {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--green);
+        }
+
+        /* Entries */
+        .entries-section {
+            margin-top: 28px;
+        }
+
+        .entries-section label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--gray);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .entries-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            background: var(--light);
+            transition: border-color 0.2s;
+        }
+
+        .entries-textarea:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        .presets {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .preset-btn {
+            padding: 6px 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: var(--white);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray);
+            transition: all 0.2s;
+        }
+
+        .preset-btn:hover { border-color: var(--green); color: var(--green); }
+
+        /* Ad */
+        .ad-slot {
+            margin: 30px auto;
+            text-align: center;
+            max-width: 728px;
+        }
+
+        .features {
+            padding: 60px 0;
+            background: var(--light);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 28px;
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon { font-size: 32px; margin-bottom: 12px; }
+        .feature-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+        .feature-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+
+        .faq { padding: 60px 0; }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: var(--white);
+        }
+
+        .faq-q {
+            padding: 18px 24px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-q:hover { background: var(--light); }
+
+        .faq-a {
+            padding: 0 24px 18px;
+            color: var(--gray);
+            display: none;
+        }
+
+        .faq-item.open .faq-a { display: block; }
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+        .faq-arrow { transition: transform 0.2s; font-size: 0.8rem; }
+
+        .altri-strumenti { padding: 60px 0; background: var(--light); }
+
+        .altri-strumenti h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .strumenti-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .strumento-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+        }
+
+        .strumento-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .strumento-card .icon { font-size: 32px; margin-bottom: 10px; }
+        .strumento-card .name { font-weight: 700; font-size: 0.95rem; }
+
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        footer a { color: #94a3b8; text-decoration: none; }
+        footer a:hover { color: white; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 80px 0 30px; }
+            .hero h1 { font-size: 1.7rem; }
+            .tool-card { padding: 24px; }
+            .wheel-wrapper { width: 280px; height: 280px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .nav-links { gap: 10px; }
+            .nav-links a { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <a href="../" class="logo">&#127922; Generatore Numeri</a>
+        <nav class="nav-links">
+            <a href="../">Numeri</a>
+            <a href="../tombola/">Tombola</a>
+            <a href="./" class="active">Ruota</a>
+            <a href="../dado/">Dado</a>
+            <a href="../testa-o-croce/">Moneta</a>
+            <a href="../superenalotto/">Lotto</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>Ruota della <span>Fortuna</span> Online</h1>
+        <p>Personalizza le opzioni, gira la ruota e lascia che il destino scelga per te. Perfetta per giochi, decisioni e sorteggi.</p>
+        <div class="hero-badges">
+            <span class="hero-badge">&#127905; Personalizzabile</span>
+            <span class="hero-badge">&#127470;&#127481; In italiano</span>
+            <span class="hero-badge">&#128274; Nessun dato raccolto</span>
+            <span class="hero-badge">&#9889; Gratuito</span>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: top -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="8530102684"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="tool" id="strumento">
+    <div class="tool-card">
+        <h2>&#127905; Gira la Ruota</h2>
+
+        <div class="wheel-wrapper">
+            <div class="wheel-pointer"></div>
+            <canvas id="wheel-canvas" width="680" height="680"></canvas>
+        </div>
+
+        <div class="winner-display" id="winner-display">
+            <div class="winner-label">Il vincitore &egrave;:</div>
+            <div class="winner-name" id="winner-name"></div>
+        </div>
+
+        <button class="btn-generate" id="btn-spin" onclick="spinWheel()">Gira la ruota</button>
+
+        <div class="entries-section">
+            <label>Opzioni (una per riga)</label>
+            <textarea class="entries-textarea" id="entries" oninput="updateWheel()">Pizza
+Pasta
+Gelato
+Tiramisù
+Lasagna
+Risotto</textarea>
+            <div class="presets">
+                <button class="preset-btn" onclick="loadPreset('yesno')">&#9989; S&igrave;/No</button>
+                <button class="preset-btn" onclick="loadPreset('names')">&#128100; Nomi</button>
+                <button class="preset-btn" onclick="loadPreset('colors')">&#127912; Colori</button>
+                <button class="preset-btn" onclick="loadPreset('numbers')">&#128290; Numeri 1-10</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: middle -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="9271650355"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="features">
+    <div class="container">
+        <h2>Perch&eacute; usare la nostra ruota</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">&#9999;&#65039;</div>
+                <div class="feature-title">Completamente personalizzabile</div>
+                <div class="feature-desc">Aggiungi, modifica o rimuovi opzioni a piacere. Scrivi tutto quello che vuoi nella ruota.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#127905;</div>
+                <div class="feature-title">Animazione fluida</div>
+                <div class="feature-desc">La ruota gira con decelerazione realistica. L'attesa del risultato rende tutto pi&ugrave; emozionante.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128203;</div>
+                <div class="feature-title">Preset pronti all'uso</div>
+                <div class="feature-desc">Inizia subito con i preset: S&igrave;/No, Nomi, Colori, Numeri. Personalizzali come vuoi.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128274;</div>
+                <div class="feature-title">Crittograficamente casuale</div>
+                <div class="feature-desc">Utilizziamo crypto.getRandomValues() per garantire risultati veramente imparziali.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128242;</div>
+                <div class="feature-title">Funziona su tutti i dispositivi</div>
+                <div class="feature-desc">Smartphone, tablet o computer. La ruota si adatta perfettamente a qualsiasi schermo.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128274;</div>
+                <div class="feature-title">Nessun dato raccolto</div>
+                <div class="feature-desc">Tutto avviene nel tuo browser. Le tue opzioni non vengono mai inviate a nessun server.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq" id="faq">
+    <div class="container">
+        <h2>Domande frequenti</h2>
+        <div class="faq-item open">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Come funziona la Ruota della Fortuna online?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">Inserisci le opzioni desiderate nella casella di testo (una per riga), poi clicca "Gira la ruota". La ruota girer&agrave; con una decelerazione casuale e si fermer&agrave; su un'opzione. Puoi anche usare i preset predefiniti.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Posso personalizzare le opzioni della ruota?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">S&igrave;! Puoi aggiungere, rimuovere o modificare qualsiasi opzione. Scrivi le opzioni nella casella di testo, una per riga. Puoi anche usare i preset come S&igrave;/No, Nomi, Colori o Numeri.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>La selezione &egrave; davvero casuale?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">S&igrave;. La rotazione della ruota utilizza crypto.getRandomValues(), un generatore crittografico del browser, per determinare dove si ferma. Nessun algoritmo pu&ograve; prevedere il risultato.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Quante opzioni posso inserire?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">Puoi inserire da 2 a 50 opzioni. La ruota si adatta automaticamente al numero di segmenti. Per la migliore esperienza visiva, si consigliano tra 4 e 12 opzioni.</div>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: bottom -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="3667969888"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="altri-strumenti">
+    <div class="container">
+        <h2>Altri strumenti</h2>
+        <div class="strumenti-grid">
+            <a href="../" class="strumento-card">
+                <div class="icon">&#128290;</div>
+                <div class="name">Generatore Numeri</div>
+            </a>
+            <a href="../tombola/" class="strumento-card">
+                <div class="icon">&#127183;</div>
+                <div class="name">Tombola Online</div>
+            </a>
+            <a href="../dado/" class="strumento-card">
+                <div class="icon">&#127922;</div>
+                <div class="name">Dado Online</div>
+            </a>
+            <a href="../testa-o-croce/" class="strumento-card">
+                <div class="icon">&#129689;</div>
+                <div class="name">Testa o Croce</div>
+            </a>
+            <a href="../superenalotto/" class="strumento-card">
+                <div class="icon">&#127920;</div>
+                <div class="name">SuperEnalotto</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Ruota della Fortuna Online &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="../termini.html">Termini di Utilizzo</a> &middot; <a href="../../">Strumenti IT</a></p>
+    </div>
+</footer>
+
+<script>
+var canvas = document.getElementById('wheel-canvas');
+var ctx = canvas.getContext('2d');
+var currentAngle = 0;
+var spinning = false;
+
+var wheelColors = [
+    '#009246', '#CE2B37', '#F4C430', '#2196F3', '#FF9800',
+    '#9C27B0', '#00BCD4', '#E91E63', '#4CAF50', '#FF5722',
+    '#3F51B5', '#795548', '#607D8B', '#8BC34A', '#FFC107'
+];
+
+function secureRandom(min, max) {
+    var range = max - min + 1;
+    var array = new Uint32Array(1);
+    crypto.getRandomValues(array);
+    return min + (array[0] % range);
+}
+
+function getEntries() {
+    var text = document.getElementById('entries').value.trim();
+    var lines = text.split('\n').filter(function(l) { return l.trim() !== ''; });
+    return lines.length >= 2 ? lines.map(function(l) { return l.trim(); }) : ['Opzione 1', 'Opzione 2'];
+}
+
+function drawWheel() {
+    var entries = getEntries();
+    var n = entries.length;
+    var cx = canvas.width / 2;
+    var cy = canvas.height / 2;
+    var r = cx - 10;
+    var arc = (2 * Math.PI) / n;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (var i = 0; i < n; i++) {
+        var startAngle = currentAngle + i * arc;
+        var endAngle = startAngle + arc;
+
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.arc(cx, cy, r, startAngle, endAngle);
+        ctx.closePath();
+        ctx.fillStyle = wheelColors[i % wheelColors.length];
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Text
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(startAngle + arc / 2);
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold ' + Math.max(14, Math.min(22, Math.floor(300 / n))) + 'px -apple-system, sans-serif';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+        var label = entries[i].length > 16 ? entries[i].substring(0, 14) + '...' : entries[i];
+        ctx.fillText(label, r - 20, 0);
+        ctx.restore();
+    }
+
+    // Center circle
+    ctx.beginPath();
+    ctx.arc(cx, cy, 30, 0, 2 * Math.PI);
+    ctx.fillStyle = '#fff';
+    ctx.fill();
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+}
+
+function updateWheel() {
+    drawWheel();
+}
+
+function spinWheel() {
+    if (spinning) return;
+    var entries = getEntries();
+    if (entries.length < 2) return;
+
+    spinning = true;
+    document.getElementById('btn-spin').disabled = true;
+    document.getElementById('winner-display').classList.remove('visible');
+
+    var n = entries.length;
+    var arc = (2 * Math.PI) / n;
+
+    // Pick winner using crypto random
+    var winnerIdx = secureRandom(0, n - 1);
+
+    // Calculate target angle: pointer is at top (3*PI/2 or -PI/2)
+    // We want the winner segment to be at the top
+    var targetSegmentCenter = winnerIdx * arc + arc / 2;
+    var pointerAngle = -Math.PI / 2;
+    var targetAngle = pointerAngle - targetSegmentCenter;
+
+    // Add full rotations for visual effect
+    var fullRotations = secureRandom(5, 8) * 2 * Math.PI;
+    var totalRotation = fullRotations + (targetAngle - currentAngle) % (2 * Math.PI);
+    if (totalRotation < fullRotations) totalRotation += 2 * Math.PI;
+
+    var startAngle = currentAngle;
+    var endAngle = currentAngle + totalRotation;
+    var duration = 4000 + secureRandom(0, 1000);
+    var startTime = null;
+
+    function animate(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var elapsed = timestamp - startTime;
+        var progress = Math.min(elapsed / duration, 1);
+
+        // Ease out cubic
+        var eased = 1 - Math.pow(1 - progress, 3);
+        currentAngle = startAngle + totalRotation * eased;
+
+        drawWheel();
+
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            spinning = false;
+            document.getElementById('btn-spin').disabled = false;
+            document.getElementById('winner-name').textContent = entries[winnerIdx];
+            document.getElementById('winner-display').classList.add('visible');
+        }
+    }
+
+    requestAnimationFrame(animate);
+}
+
+function loadPreset(type) {
+    var presets = {
+        yesno: "S\u00ec\nNo",
+        names: "Marco\nGiulia\nLuca\nFrancesca\nAlessandro\nSofia",
+        colors: "Rosso\nBlu\nVerde\nGiallo\nArancione\nViola",
+        numbers: "1\n2\n3\n4\n5\n6\n7\n8\n9\n10"
+    };
+    document.getElementById('entries').value = presets[type] || '';
+    updateWheel();
+}
+
+// Init
+drawWheel();
+</script>
+
+</body>
+</html>

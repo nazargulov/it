@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9782800108858107"
+         crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore Numeri SuperEnalotto — Numeri Casuali per il Lotto | Gratis</title>
+    <meta name="description" content="Genera numeri casuali per SuperEnalotto, Million Day e EuroJackpot. Generatore gratuito con numeri crittograficamente casuali. Scegli i tuoi numeri fortunati!">
+    <meta name="keywords" content="generatore superenalotto, numeri superenalotto, generatore numeri lotto, numeri casuali superenalotto, million day, eurojackpot, numeri fortunati, generatore lotto">
+    <link rel="canonical" href="https://nazargulov.github.io/it/generatore/superenalotto/">
+
+    <meta property="og:title" content="Generatore Numeri SuperEnalotto — Numeri Casuali per il Lotto | Gratis">
+    <meta property="og:description" content="Genera numeri casuali per SuperEnalotto, Million Day e EuroJackpot. Gratis e senza registrazione.">
+    <meta property="og:url" content="https://nazargulov.github.io/it/generatore/superenalotto/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Generatore Numeri SuperEnalotto",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Tutti",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "description": "Genera numeri casuali per SuperEnalotto, Million Day e EuroJackpot.",
+        "inLanguage": "it",
+        "url": "https://nazargulov.github.io/it/generatore/superenalotto/"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Come funziona il generatore SuperEnalotto?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Il generatore estrae 6 numeri casuali unici da 1 a 90 più un numero Jolly separato, esattamente come nel gioco ufficiale SuperEnalotto. I numeri sono generati con crypto.getRandomValues() per la massima casualità."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quali giochi sono supportati?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Supportiamo SuperEnalotto (6 numeri da 1-90 + Jolly), Million Day (5 numeri da 1-55) e EuroJackpot (5 numeri da 1-50 + 2 Euronumeri da 1-12). Ogni gioco segue le regole ufficiali."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "I numeri generati possono farmi vincere?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "I numeri sono completamente casuali e hanno la stessa probabilità di uscire di qualsiasi altra combinazione. Non esiste un metodo per prevedere i numeri vincenti. Gioca responsabilmente."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "I numeri sono davvero casuali?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sì. Utilizziamo crypto.getRandomValues(), un generatore crittografico integrato nel browser, che produce numeri con elevata entropia. Ogni combinazione è unica e indipendente dalle precedenti."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --green: #009246;
+            --green-dark: #006d34;
+            --green-light: rgba(0, 146, 70, 0.08);
+            --red: #CE2B37;
+            --red-dark: #a82230;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --gold: #f59e0b;
+            --blue: #2563eb;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        header {
+            background: var(--white);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--green);
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { color: var(--green); }
+        .nav-links a.active { color: var(--green); font-weight: 700; }
+
+        .hero {
+            padding: 100px 0 40px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--green-light) 0%, var(--white) 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span { color: var(--green); }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .tool { padding: 40px 0 60px; }
+
+        .tool-card {
+            background: var(--white);
+            border: 2px solid var(--green);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .tool-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 28px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tool-tab {
+            padding: 8px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: var(--white);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            color: var(--gray);
+        }
+
+        .tool-tab:hover { border-color: var(--green); color: var(--green); }
+        .tool-tab.active { background: var(--green); color: white; border-color: var(--green); }
+
+        .tool-panel { display: none; }
+        .tool-panel.active { display: block; }
+
+        .game-title {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .game-desc {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .btn-generate {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-generate:active { transform: translateY(0); }
+
+        /* Lottery balls */
+        .balls-display {
+            text-align: center;
+            margin: 24px 0;
+            min-height: 80px;
+        }
+
+        .balls-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .lotto-ball {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0 -2px 4px rgba(0,0,0,0.15);
+        }
+
+        .lotto-ball.main {
+            background: linear-gradient(145deg, var(--green), var(--green-dark));
+        }
+
+        .lotto-ball.jolly {
+            background: linear-gradient(145deg, var(--gold), #d97706);
+        }
+
+        .lotto-ball.euro {
+            background: linear-gradient(145deg, var(--blue), #1d4ed8);
+        }
+
+        .lotto-ball.animating {
+            animation: ballAppear 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes ballAppear {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .balls-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .separator {
+            width: 2px;
+            height: 56px;
+            background: #e2e8f0;
+            margin: 0 6px;
+            align-self: center;
+        }
+
+        /* Rules */
+        .rules {
+            margin-top: 20px;
+            padding: 16px;
+            background: var(--light);
+            border-radius: 12px;
+        }
+
+        .rules h4 {
+            font-size: 0.9rem;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .rules p {
+            font-size: 0.85rem;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* Ad */
+        .ad-slot {
+            margin: 30px auto;
+            text-align: center;
+            max-width: 728px;
+        }
+
+        .features {
+            padding: 60px 0;
+            background: var(--light);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 28px;
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon { font-size: 32px; margin-bottom: 12px; }
+        .feature-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+        .feature-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+
+        .faq { padding: 60px 0; }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: var(--white);
+        }
+
+        .faq-q {
+            padding: 18px 24px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-q:hover { background: var(--light); }
+
+        .faq-a {
+            padding: 0 24px 18px;
+            color: var(--gray);
+            display: none;
+        }
+
+        .faq-item.open .faq-a { display: block; }
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+        .faq-arrow { transition: transform 0.2s; font-size: 0.8rem; }
+
+        .altri-strumenti { padding: 60px 0; background: var(--light); }
+
+        .altri-strumenti h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .strumenti-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .strumento-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+        }
+
+        .strumento-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .strumento-card .icon { font-size: 32px; margin-bottom: 10px; }
+        .strumento-card .name { font-weight: 700; font-size: 0.95rem; }
+
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        footer a { color: #94a3b8; text-decoration: none; }
+        footer a:hover { color: white; }
+
+        .disclaimer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 20px;
+            padding: 12px;
+            background: #fef3c7;
+            border-radius: 10px;
+            border: 1px solid #fde68a;
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 80px 0 30px; }
+            .hero h1 { font-size: 1.7rem; }
+            .tool-card { padding: 24px; }
+            .lotto-ball { width: 46px; height: 46px; font-size: 1.1rem; }
+            .separator { height: 46px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .nav-links { gap: 10px; }
+            .nav-links a { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <a href="../" class="logo">&#127922; Generatore Numeri</a>
+        <nav class="nav-links">
+            <a href="../">Numeri</a>
+            <a href="../tombola/">Tombola</a>
+            <a href="../ruota/">Ruota</a>
+            <a href="../dado/">Dado</a>
+            <a href="../testa-o-croce/">Moneta</a>
+            <a href="./" class="active">Lotto</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>Generatore Numeri <span>SuperEnalotto</span></h1>
+        <p>Genera numeri casuali per SuperEnalotto, Million Day e EuroJackpot. Scegli i tuoi numeri fortunati con un click!</p>
+        <div class="hero-badges">
+            <span class="hero-badge">&#127920; SuperEnalotto</span>
+            <span class="hero-badge">&#11088; Million Day</span>
+            <span class="hero-badge">&#127466;&#127482; EuroJackpot</span>
+            <span class="hero-badge">&#9889; Gratuito</span>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: top -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="8530102684"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="tool" id="strumento">
+    <div class="tool-card">
+        <div class="tool-tabs">
+            <button class="tool-tab active" data-tab="super">&#127920; SuperEnalotto</button>
+            <button class="tool-tab" data-tab="million">&#11088; Million Day</button>
+            <button class="tool-tab" data-tab="euro">&#127466;&#127482; EuroJackpot</button>
+        </div>
+
+        <!-- SuperEnalotto -->
+        <div class="tool-panel active" id="panel-super">
+            <div class="game-title">SuperEnalotto</div>
+            <div class="game-desc">6 numeri da 1 a 90 + Numero Jolly</div>
+            <button class="btn-generate" onclick="generateSuper()">Genera combinazione</button>
+            <div class="balls-display" id="super-display"></div>
+            <div class="rules">
+                <h4>Regole SuperEnalotto</h4>
+                <p>Scegli 6 numeri da 1 a 90. Per vincere il jackpot devi indovinare tutti e 6 i numeri estratti. Il Numero Jolly serve per il premio "5+1". Le estrazioni si svolgono il marted&igrave;, gioved&igrave; e sabato.</p>
+            </div>
+        </div>
+
+        <!-- Million Day -->
+        <div class="tool-panel" id="panel-million">
+            <div class="game-title">Million Day</div>
+            <div class="game-desc">5 numeri da 1 a 55</div>
+            <button class="btn-generate" onclick="generateMillion()">Genera combinazione</button>
+            <div class="balls-display" id="million-display"></div>
+            <div class="rules">
+                <h4>Regole Million Day</h4>
+                <p>Scegli 5 numeri da 1 a 55. Per vincere il premio massimo di 1 milione di euro devi indovinare tutti e 5 i numeri. Le estrazioni avvengono tutti i giorni alle 20:30.</p>
+            </div>
+        </div>
+
+        <!-- EuroJackpot -->
+        <div class="tool-panel" id="panel-euro">
+            <div class="game-title">EuroJackpot</div>
+            <div class="game-desc">5 numeri da 1 a 50 + 2 Euronumeri da 1 a 12</div>
+            <button class="btn-generate" onclick="generateEuro()">Genera combinazione</button>
+            <div class="balls-display" id="euro-display"></div>
+            <div class="rules">
+                <h4>Regole EuroJackpot</h4>
+                <p>Scegli 5 numeri da 1 a 50 e 2 Euronumeri da 1 a 12. Per vincere il jackpot devi indovinare tutti e 7 i numeri. Le estrazioni si svolgono il marted&igrave; e il venerd&igrave;. Il jackpot pu&ograve; raggiungere 120 milioni di euro.</p>
+            </div>
+        </div>
+
+        <div class="disclaimer">&#9888;&#65039; Strumento a solo scopo ricreativo. Gioca responsabilmente. Il gioco pu&ograve; creare dipendenza.</div>
+    </div>
+</section>
+
+<!-- Ad slot: middle -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="9271650355"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="features">
+    <div class="container">
+        <h2>Perch&eacute; usare il nostro generatore</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">&#127920;</div>
+                <div class="feature-title">3 giochi supportati</div>
+                <div class="feature-desc">SuperEnalotto, Million Day e EuroJackpot. Tutti i principali giochi del Lotto italiano ed europeo.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128274;</div>
+                <div class="feature-title">Numeri crittografici</div>
+                <div class="feature-desc">Utilizziamo crypto.getRandomValues() per generare numeri con la massima entropia e casualit&agrave;.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9889;</div>
+                <div class="feature-title">Un click, una combinazione</div>
+                <div class="feature-desc">Genera combinazioni istantaneamente. Premi il pulsante quante volte vuoi per nuove combinazioni.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#127183;</div>
+                <div class="feature-title">Numeri stile lotteria</div>
+                <div class="feature-desc">I numeri vengono visualizzati come palline colorate, proprio come nelle estrazioni ufficiali.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128214;</div>
+                <div class="feature-title">Regole incluse</div>
+                <div class="feature-desc">Ogni gioco include una breve spiegazione delle regole ufficiali per chi non le conosce.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128274;</div>
+                <div class="feature-title">Nessun dato raccolto</div>
+                <div class="feature-desc">Tutto avviene nel tuo browser. I numeri generati non vengono salvati n&eacute; condivisi.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq" id="faq">
+    <div class="container">
+        <h2>Domande frequenti</h2>
+        <div class="faq-item open">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Come funziona il generatore SuperEnalotto?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">Il generatore estrae 6 numeri casuali unici da 1 a 90 pi&ugrave; un numero Jolly separato, esattamente come nel gioco ufficiale SuperEnalotto. I numeri sono generati con crypto.getRandomValues() per la massima casualit&agrave;.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Quali giochi sono supportati?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">Supportiamo SuperEnalotto (6 numeri da 1-90 + Jolly), Million Day (5 numeri da 1-55) e EuroJackpot (5 numeri da 1-50 + 2 Euronumeri da 1-12). Ogni gioco segue le regole ufficiali.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>I numeri generati possono farmi vincere?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">I numeri sono completamente casuali e hanno la stessa probabilit&agrave; di uscire di qualsiasi altra combinazione. Non esiste un metodo per prevedere i numeri vincenti. La probabilit&agrave; di vincere il jackpot del SuperEnalotto &egrave; di 1 su 622.614.630. Gioca responsabilmente.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>I numeri sono davvero casuali?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">S&igrave;. Utilizziamo crypto.getRandomValues(), un generatore crittografico integrato nel browser, che produce numeri con elevata entropia. Ogni combinazione &egrave; unica e indipendente dalle precedenti.</div>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: bottom -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="3667969888"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="altri-strumenti">
+    <div class="container">
+        <h2>Altri strumenti</h2>
+        <div class="strumenti-grid">
+            <a href="../" class="strumento-card">
+                <div class="icon">&#128290;</div>
+                <div class="name">Generatore Numeri</div>
+            </a>
+            <a href="../tombola/" class="strumento-card">
+                <div class="icon">&#127183;</div>
+                <div class="name">Tombola Online</div>
+            </a>
+            <a href="../ruota/" class="strumento-card">
+                <div class="icon">&#127905;</div>
+                <div class="name">Ruota della Fortuna</div>
+            </a>
+            <a href="../dado/" class="strumento-card">
+                <div class="icon">&#127922;</div>
+                <div class="name">Dado Online</div>
+            </a>
+            <a href="../testa-o-croce/" class="strumento-card">
+                <div class="icon">&#129689;</div>
+                <div class="name">Testa o Croce</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Generatore SuperEnalotto &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="../termini.html">Termini di Utilizzo</a> &middot; <a href="../../">Strumenti IT</a></p>
+    </div>
+</footer>
+
+<script>
+function secureRandom(min, max) {
+    var range = max - min + 1;
+    var array = new Uint32Array(1);
+    crypto.getRandomValues(array);
+    return min + (array[0] % range);
+}
+
+function uniqueNumbers(count, min, max) {
+    var pool = [];
+    for (var i = min; i <= max; i++) pool.push(i);
+    var result = [];
+    for (var j = 0; j < count; j++) {
+        var idx = secureRandom(0, pool.length - 1);
+        result.push(pool[idx]);
+        pool.splice(idx, 1);
+    }
+    return result.sort(function(a, b) { return a - b; });
+}
+
+function renderBalls(container, numbers, cls, delay) {
+    for (var i = 0; i < numbers.length; i++) {
+        (function(num, index) {
+            var ball = document.createElement('div');
+            ball.className = 'lotto-ball ' + cls + ' animating';
+            ball.textContent = num;
+            ball.style.animationDelay = (index * 0.1) + 's';
+            container.appendChild(ball);
+        })(numbers[i], i);
+    }
+}
+
+// Tab switching
+document.querySelectorAll('.tool-tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+        document.querySelectorAll('.tool-tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.tool-panel').forEach(function(p) { p.classList.remove('active'); });
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+});
+
+function generateSuper() {
+    var display = document.getElementById('super-display');
+    display.innerHTML = '';
+
+    var main = uniqueNumbers(6, 1, 90);
+    var jolly = secureRandom(1, 90);
+    // Make sure jolly is not in main
+    while (main.indexOf(jolly) !== -1) {
+        jolly = secureRandom(1, 90);
+    }
+
+    var mainLabel = document.createElement('div');
+    mainLabel.className = 'balls-label';
+    mainLabel.textContent = 'Numeri principali';
+    display.appendChild(mainLabel);
+
+    var mainRow = document.createElement('div');
+    mainRow.className = 'balls-row';
+    renderBalls(mainRow, main, 'main');
+    display.appendChild(mainRow);
+
+    var jollyLabel = document.createElement('div');
+    jollyLabel.className = 'balls-label';
+    jollyLabel.textContent = 'Numero Jolly';
+    display.appendChild(jollyLabel);
+
+    var jollyRow = document.createElement('div');
+    jollyRow.className = 'balls-row';
+    var jollyBall = document.createElement('div');
+    jollyBall.className = 'lotto-ball jolly animating';
+    jollyBall.textContent = jolly;
+    jollyBall.style.animationDelay = '0.6s';
+    jollyRow.appendChild(jollyBall);
+    display.appendChild(jollyRow);
+}
+
+function generateMillion() {
+    var display = document.getElementById('million-display');
+    display.innerHTML = '';
+
+    var nums = uniqueNumbers(5, 1, 55);
+
+    var label = document.createElement('div');
+    label.className = 'balls-label';
+    label.textContent = 'I tuoi 5 numeri';
+    display.appendChild(label);
+
+    var row = document.createElement('div');
+    row.className = 'balls-row';
+    renderBalls(row, nums, 'main');
+    display.appendChild(row);
+}
+
+function generateEuro() {
+    var display = document.getElementById('euro-display');
+    display.innerHTML = '';
+
+    var main = uniqueNumbers(5, 1, 50);
+    var euro = uniqueNumbers(2, 1, 12);
+
+    var mainLabel = document.createElement('div');
+    mainLabel.className = 'balls-label';
+    mainLabel.textContent = 'Numeri principali';
+    display.appendChild(mainLabel);
+
+    var mainRow = document.createElement('div');
+    mainRow.className = 'balls-row';
+    renderBalls(mainRow, main, 'main');
+    display.appendChild(mainRow);
+
+    var euroLabel = document.createElement('div');
+    euroLabel.className = 'balls-label';
+    euroLabel.textContent = 'Euronumeri';
+    display.appendChild(euroLabel);
+
+    var euroRow = document.createElement('div');
+    euroRow.className = 'balls-row';
+    renderBalls(euroRow, euro, 'euro');
+    display.appendChild(euroRow);
+}
+</script>
+
+</body>
+</html>

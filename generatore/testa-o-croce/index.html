@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9782800108858107"
+         crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testa o Croce Online — Lancia la Moneta | Gratis</title>
+    <meta name="description" content="Testa o Croce online gratuito. Lancia una moneta virtuale con animazione 3D. Statistiche, lanci multipli, storico. Perfetto per decisioni casuali e scommesse.">
+    <meta name="keywords" content="testa o croce, testa o croce online, lancia moneta, lancio moneta, moneta virtuale, coin flip, testa croce, tirare la moneta">
+    <link rel="canonical" href="https://nazargulov.github.io/it/generatore/testa-o-croce/">
+
+    <meta property="og:title" content="Testa o Croce Online — Lancia la Moneta | Gratis">
+    <meta property="og:description" content="Lancia una moneta virtuale con animazione 3D. Statistiche in tempo reale. Gratis e senza registrazione.">
+    <meta property="og:url" content="https://nazargulov.github.io/it/generatore/testa-o-croce/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Testa o Croce Online",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Tutti",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "description": "Testa o Croce online gratuito. Lancia una moneta virtuale con animazione 3D e statistiche.",
+        "inLanguage": "it",
+        "url": "https://nazargulov.github.io/it/generatore/testa-o-croce/"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Come funziona Testa o Croce online?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Clicca 'Lancia la moneta' e una moneta virtuale verrà lanciata con un'animazione 3D realistica. Il risultato sarà Testa o Croce, determinato da un generatore crittografico per la massima casualità."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Il risultato è davvero casuale al 50%?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sì. Utilizziamo crypto.getRandomValues(), un generatore crittografico del browser, che garantisce una probabilità esattamente del 50% per Testa e 50% per Croce. Nessun algoritmo può prevedere il risultato."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Posso lanciare più monete contemporaneamente?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sì! Puoi lanciare 2, 5, 10 o persino 100 monete alla volta. I risultati vengono mostrati sia come conteggio che come percentuale."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Le statistiche vengono salvate?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Le statistiche sono visibili durante la sessione corrente e mostrano il conteggio totale di Testa e Croce con le relative percentuali. Tutto avviene localmente nel browser, nessun dato viene inviato."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --green: #009246;
+            --green-dark: #006d34;
+            --green-light: rgba(0, 146, 70, 0.08);
+            --red: #CE2B37;
+            --red-dark: #a82230;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --gold: #f59e0b;
+            --gold-dark: #d97706;
+            --silver: #94a3b8;
+            --silver-dark: #64748b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        header {
+            background: var(--white);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--green);
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { color: var(--green); }
+        .nav-links a.active { color: var(--green); font-weight: 700; }
+
+        .hero {
+            padding: 100px 0 40px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--green-light) 0%, var(--white) 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span { color: var(--green); }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .tool { padding: 40px 0 60px; }
+
+        .tool-card {
+            background: var(--white);
+            border: 2px solid var(--green);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tool-card h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 28px;
+            color: var(--green);
+        }
+
+        .btn-generate {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-generate:active { transform: translateY(0); }
+
+        /* Coin */
+        .coin-area {
+            text-align: center;
+            margin: 28px 0;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            perspective: 600px;
+        }
+
+        .coin-3d {
+            width: 140px;
+            height: 140px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s;
+        }
+
+        .coin-3d.flipping {
+            animation: coinFlip3d 0.8s ease-out;
+        }
+
+        @keyframes coinFlip3d {
+            0% { transform: rotateX(0deg) scale(0.9); }
+            25% { transform: rotateX(450deg) scale(1.1) translateY(-30px); }
+            50% { transform: rotateX(900deg) scale(1.05) translateY(-10px); }
+            75% { transform: rotateX(1260deg) scale(1); }
+            100% { transform: rotateX(1440deg) scale(1); }
+        }
+
+        .coin-3d.flipping-tails {
+            animation: coinFlip3dTails 0.8s ease-out;
+        }
+
+        @keyframes coinFlip3dTails {
+            0% { transform: rotateX(0deg) scale(0.9); }
+            25% { transform: rotateX(450deg) scale(1.1) translateY(-30px); }
+            50% { transform: rotateX(900deg) scale(1.05) translateY(-10px); }
+            75% { transform: rotateX(1260deg) scale(1); }
+            100% { transform: rotateX(1620deg) scale(1); }
+        }
+
+        .coin-face {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            font-weight: 900;
+            backface-visibility: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2), inset 0 -2px 6px rgba(0,0,0,0.1);
+        }
+
+        .coin-heads {
+            background: linear-gradient(145deg, #fcd34d, #f59e0b, #d97706);
+            color: #7c2d12;
+            border: 3px solid #d97706;
+        }
+
+        .coin-tails {
+            background: linear-gradient(145deg, #cbd5e1, #94a3b8, #64748b);
+            color: #1e293b;
+            border: 3px solid #64748b;
+            transform: rotateX(180deg);
+        }
+
+        .coin-label {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-top: 16px;
+        }
+
+        .coin-label.heads-label { color: var(--gold-dark); }
+        .coin-label.tails-label { color: var(--silver-dark); }
+
+        /* Multi-flip */
+        .multi-flip {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .multi-btn {
+            padding: 8px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: var(--white);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            color: var(--gray);
+        }
+
+        .multi-btn:hover { border-color: var(--green); color: var(--green); }
+
+        .multi-result {
+            margin-top: 20px;
+            padding: 16px;
+            background: var(--light);
+            border-radius: 12px;
+            display: none;
+            text-align: center;
+        }
+
+        .multi-result.visible { display: block; }
+
+        .multi-result .count {
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .multi-result .count .heads { color: var(--gold-dark); }
+        .multi-result .count .tails { color: var(--silver-dark); }
+
+        /* Stats */
+        .stats {
+            margin-top: 24px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 14px;
+        }
+
+        .stats h3 {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: 16px;
+        }
+
+        .stats-bars {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .stat-side {
+            flex: 1;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+
+        .stat-label.heads { color: var(--gold-dark); }
+        .stat-label.tails { color: var(--silver-dark); }
+
+        .stat-count {
+            font-size: 2rem;
+            font-weight: 900;
+        }
+
+        .stat-count.heads { color: var(--gold-dark); }
+        .stat-count.tails { color: var(--silver-dark); }
+
+        .stat-pct {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .stat-bar-wrapper {
+            flex: 2;
+        }
+
+        .stat-bar {
+            height: 24px;
+            border-radius: 12px;
+            background: var(--silver);
+            overflow: hidden;
+            display: flex;
+        }
+
+        .stat-bar-heads {
+            background: linear-gradient(90deg, #fcd34d, #f59e0b);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .btn-reset-stats {
+            display: block;
+            margin: 12px auto 0;
+            padding: 6px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: var(--white);
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: var(--gray);
+            transition: all 0.2s;
+        }
+
+        .btn-reset-stats:hover { border-color: var(--red); color: var(--red); }
+
+        /* History */
+        .history-section {
+            margin-top: 20px;
+        }
+
+        .history-section h3 {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .history-coins {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .history-mini {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 800;
+        }
+
+        .history-mini.h { background: linear-gradient(135deg, #fcd34d, #f59e0b); color: #7c2d12; }
+        .history-mini.t { background: linear-gradient(135deg, #cbd5e1, #94a3b8); color: #1e293b; }
+
+        /* Ad */
+        .ad-slot {
+            margin: 30px auto;
+            text-align: center;
+            max-width: 728px;
+        }
+
+        .features {
+            padding: 60px 0;
+            background: var(--light);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 28px;
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon { font-size: 32px; margin-bottom: 12px; }
+        .feature-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+        .feature-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+
+        .faq { padding: 60px 0; }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: var(--white);
+        }
+
+        .faq-q {
+            padding: 18px 24px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-q:hover { background: var(--light); }
+
+        .faq-a {
+            padding: 0 24px 18px;
+            color: var(--gray);
+            display: none;
+        }
+
+        .faq-item.open .faq-a { display: block; }
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+        .faq-arrow { transition: transform 0.2s; font-size: 0.8rem; }
+
+        .altri-strumenti { padding: 60px 0; background: var(--light); }
+
+        .altri-strumenti h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .strumenti-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .strumento-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+        }
+
+        .strumento-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .strumento-card .icon { font-size: 32px; margin-bottom: 10px; }
+        .strumento-card .name { font-weight: 700; font-size: 0.95rem; }
+
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        footer a { color: #94a3b8; text-decoration: none; }
+        footer a:hover { color: white; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 80px 0 30px; }
+            .hero h1 { font-size: 1.7rem; }
+            .tool-card { padding: 24px; }
+            .coin-3d, .coin-face { width: 110px; height: 110px; }
+            .coin-face { font-size: 2.8rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .nav-links { gap: 10px; }
+            .nav-links a { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <a href="../" class="logo">&#127922; Generatore Numeri</a>
+        <nav class="nav-links">
+            <a href="../">Numeri</a>
+            <a href="../tombola/">Tombola</a>
+            <a href="../ruota/">Ruota</a>
+            <a href="../dado/">Dado</a>
+            <a href="./" class="active">Moneta</a>
+            <a href="../superenalotto/">Lotto</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1><span>Testa o Croce</span> Online</h1>
+        <p>Lancia una moneta virtuale con animazione 3D. Statistiche in tempo reale, lanci multipli e storico completo.</p>
+        <div class="hero-badges">
+            <span class="hero-badge">&#129689; Animazione 3D</span>
+            <span class="hero-badge">&#128202; Statistiche</span>
+            <span class="hero-badge">&#128274; Nessun dato raccolto</span>
+            <span class="hero-badge">&#9889; Gratuito</span>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: top -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="8530102684"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="tool" id="strumento">
+    <div class="tool-card">
+        <h2>&#129689; Lancia la Moneta</h2>
+
+        <button class="btn-generate" onclick="flipCoin()">Lancia la moneta</button>
+
+        <div class="coin-area" id="coin-area">
+            <div class="coin-3d" id="coin-3d">
+                <div class="coin-face coin-heads">T</div>
+                <div class="coin-face coin-tails">C</div>
+            </div>
+            <div class="coin-label" id="coin-label">Clicca per lanciare</div>
+        </div>
+
+        <div class="multi-flip">
+            <button class="multi-btn" onclick="multiFlip(2)">&#215;2</button>
+            <button class="multi-btn" onclick="multiFlip(5)">&#215;5</button>
+            <button class="multi-btn" onclick="multiFlip(10)">&#215;10</button>
+            <button class="multi-btn" onclick="multiFlip(100)">&#215;100</button>
+        </div>
+
+        <div class="multi-result" id="multi-result">
+            <div class="count" id="multi-count"></div>
+        </div>
+
+        <div class="stats" id="stats">
+            <h3>Statistiche</h3>
+            <div class="stats-bars">
+                <div class="stat-side">
+                    <div class="stat-label heads">Testa</div>
+                    <div class="stat-count heads" id="stat-heads">0</div>
+                    <div class="stat-pct" id="stat-heads-pct">0%</div>
+                </div>
+                <div class="stat-bar-wrapper">
+                    <div class="stat-bar">
+                        <div class="stat-bar-heads" id="stat-bar-heads" style="width:50%"></div>
+                    </div>
+                </div>
+                <div class="stat-side">
+                    <div class="stat-label tails">Croce</div>
+                    <div class="stat-count tails" id="stat-tails">0</div>
+                    <div class="stat-pct" id="stat-tails-pct">0%</div>
+                </div>
+            </div>
+            <button class="btn-reset-stats" onclick="resetStats()">Azzera statistiche</button>
+        </div>
+
+        <div class="history-section" id="history-section" style="display:none">
+            <h3>Storico lanci</h3>
+            <div class="history-coins" id="history-coins"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: middle -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="9271650355"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="features">
+    <div class="container">
+        <h2>Perch&eacute; usare Testa o Croce online</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">&#129689;</div>
+                <div class="feature-title">Animazione 3D</div>
+                <div class="feature-desc">La moneta gira in 3D con un'animazione fluida e realistica. L'attesa del risultato rende tutto pi&ugrave; emozionante.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128202;</div>
+                <div class="feature-title">Statistiche in tempo reale</div>
+                <div class="feature-desc">Conta Testa e Croce con percentuali e barra visuale. Perfetto per verificare la casualit&agrave;.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128290;</div>
+                <div class="feature-title">Lanci multipli</div>
+                <div class="feature-desc">Lancia 2, 5, 10 o 100 monete alla volta. Ideale per esperimenti di probabilit&agrave; e scommesse veloci.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128274;</div>
+                <div class="feature-title">Crittograficamente casuale</div>
+                <div class="feature-desc">Esattamente 50/50. Utilizziamo crypto.getRandomValues() per risultati veramente imparziali.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128196;</div>
+                <div class="feature-title">Storico lanci</div>
+                <div class="feature-desc">Visualizza lo storico completo dei lanci con mini-monete colorate. Perfetto per tenere traccia.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128242;</div>
+                <div class="feature-title">Funziona ovunque</div>
+                <div class="feature-desc">Smartphone, tablet o computer. Nessuna app da scaricare, funziona direttamente nel browser.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq" id="faq">
+    <div class="container">
+        <h2>Domande frequenti</h2>
+        <div class="faq-item open">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Come funziona Testa o Croce online?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">Clicca "Lancia la moneta" e una moneta virtuale verr&agrave; lanciata con un'animazione 3D realistica. Il risultato sar&agrave; Testa o Croce, determinato da un generatore crittografico per la massima casualit&agrave;.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Il risultato &egrave; davvero casuale al 50%?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">S&igrave;. Utilizziamo crypto.getRandomValues(), un generatore crittografico del browser, che garantisce una probabilit&agrave; esattamente del 50% per Testa e 50% per Croce. &Egrave; lo stesso sistema usato per la sicurezza HTTPS.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Posso lanciare pi&ugrave; monete contemporaneamente?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">S&igrave;! Puoi lanciare 2, 5, 10 o persino 100 monete alla volta. I risultati vengono mostrati sia come conteggio che come percentuale. Utile per esperimenti di probabilit&agrave;.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Le statistiche vengono salvate?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">Le statistiche sono visibili durante la sessione corrente. Tutto avviene localmente nel tuo browser. Nessun dato viene inviato a server esterni. Puoi azzerare le statistiche in qualsiasi momento.</div>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: bottom -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="3667969888"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="altri-strumenti">
+    <div class="container">
+        <h2>Altri strumenti</h2>
+        <div class="strumenti-grid">
+            <a href="../" class="strumento-card">
+                <div class="icon">&#128290;</div>
+                <div class="name">Generatore Numeri</div>
+            </a>
+            <a href="../tombola/" class="strumento-card">
+                <div class="icon">&#127183;</div>
+                <div class="name">Tombola Online</div>
+            </a>
+            <a href="../ruota/" class="strumento-card">
+                <div class="icon">&#127905;</div>
+                <div class="name">Ruota della Fortuna</div>
+            </a>
+            <a href="../dado/" class="strumento-card">
+                <div class="icon">&#127922;</div>
+                <div class="name">Dado Online</div>
+            </a>
+            <a href="../superenalotto/" class="strumento-card">
+                <div class="icon">&#127920;</div>
+                <div class="name">SuperEnalotto</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Testa o Croce Online &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="../termini.html">Termini di Utilizzo</a> &middot; <a href="../../">Strumenti IT</a></p>
+    </div>
+</footer>
+
+<script>
+function secureRandom(min, max) {
+    var range = max - min + 1;
+    var array = new Uint32Array(1);
+    crypto.getRandomValues(array);
+    return min + (array[0] % range);
+}
+
+var totalHeads = 0;
+var totalTails = 0;
+var flipHistory = [];
+var isFlipping = false;
+
+function flipCoin() {
+    if (isFlipping) return;
+    isFlipping = true;
+
+    var isHeads = secureRandom(0, 1) === 0;
+    var coin = document.getElementById('coin-3d');
+    var label = document.getElementById('coin-label');
+
+    // Remove old animation classes
+    coin.classList.remove('flipping', 'flipping-tails');
+
+    // Force reflow
+    void coin.offsetWidth;
+
+    // Add appropriate animation
+    coin.classList.add(isHeads ? 'flipping' : 'flipping-tails');
+
+    setTimeout(function() {
+        label.textContent = isHeads ? 'Testa!' : 'Croce!';
+        label.className = 'coin-label ' + (isHeads ? 'heads-label' : 'tails-label');
+
+        if (isHeads) totalHeads++;
+        else totalTails++;
+
+        flipHistory.push(isHeads ? 'h' : 't');
+        updateStats();
+        updateHistory();
+        document.getElementById('multi-result').classList.remove('visible');
+        isFlipping = false;
+    }, 800);
+}
+
+function multiFlip(count) {
+    var h = 0;
+    var t = 0;
+    for (var i = 0; i < count; i++) {
+        var isHeads = secureRandom(0, 1) === 0;
+        if (isHeads) { h++; totalHeads++; flipHistory.push('h'); }
+        else { t++; totalTails++; flipHistory.push('t'); }
+    }
+
+    var el = document.getElementById('multi-count');
+    el.innerHTML = count + ' lanci: <span class="heads">Testa ' + h + '</span> &mdash; <span class="tails">Croce ' + t + '</span>';
+    document.getElementById('multi-result').classList.add('visible');
+
+    updateStats();
+    updateHistory();
+}
+
+function updateStats() {
+    var total = totalHeads + totalTails;
+    document.getElementById('stat-heads').textContent = totalHeads;
+    document.getElementById('stat-tails').textContent = totalTails;
+
+    var hPct = total > 0 ? ((totalHeads / total) * 100).toFixed(1) : 0;
+    var tPct = total > 0 ? ((totalTails / total) * 100).toFixed(1) : 0;
+
+    document.getElementById('stat-heads-pct').textContent = hPct + '%';
+    document.getElementById('stat-tails-pct').textContent = tPct + '%';
+    document.getElementById('stat-bar-heads').style.width = (total > 0 ? hPct : 50) + '%';
+}
+
+function updateHistory() {
+    var container = document.getElementById('history-coins');
+    container.innerHTML = '';
+    var start = Math.max(0, flipHistory.length - 100);
+    for (var i = flipHistory.length - 1; i >= start; i--) {
+        var mini = document.createElement('div');
+        mini.className = 'history-mini ' + flipHistory[i];
+        mini.textContent = flipHistory[i] === 'h' ? 'T' : 'C';
+        container.appendChild(mini);
+    }
+    document.getElementById('history-section').style.display = flipHistory.length > 0 ? 'block' : 'none';
+}
+
+function resetStats() {
+    totalHeads = 0;
+    totalTails = 0;
+    flipHistory = [];
+    updateStats();
+    updateHistory();
+    document.getElementById('multi-result').classList.remove('visible');
+}
+</script>
+
+</body>
+</html>

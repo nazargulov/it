@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generatore di Numeri Casuali Online | Gratis e Veloce</title>
-    <meta name="description" content="Generatore di numeri casuali online gratuito. Genera numeri random, lancia dadi, estrai numeri per lotterie e tombole. Semplice, veloce, senza registrazione.">
+    <meta name="description" content="Generatore di numeri casuali online gratuito. Genera numeri random, lancia dadi, tombola, ruota della fortuna, testa o croce, SuperEnalotto. Semplice, veloce, senza registrazione.">
     <meta name="keywords" content="generatore numeri casuali, generatore di numeri casuali, genera numeri casuali, numero casuale, generatore casuale di numeri, generatore casuale numeri, numeri random, estrazione numeri casuali, generatore numeri, numero random, generatore di numeri da 1 a 10, generatore numeri casuali online">
     <link rel="canonical" href="https://nazargulov.github.io/it/generatore/">
 
@@ -146,6 +146,7 @@
         }
 
         .nav-links a:hover { color: var(--green); }
+        .nav-links a.active { color: var(--green); font-weight: 700; }
 
         /* Hero */
         .hero {
@@ -582,6 +583,41 @@
         footer a { color: #94a3b8; text-decoration: none; }
         footer a:hover { color: white; }
 
+        /* Altri strumenti */
+        .altri-strumenti { padding: 60px 0; background: var(--light); }
+
+        .altri-strumenti h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .strumenti-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .strumento-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+        }
+
+        .strumento-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .strumento-card .icon { font-size: 32px; margin-bottom: 10px; }
+        .strumento-card .name { font-weight: 700; font-size: 0.95rem; }
+
         @media (max-width: 768px) {
             .hero { padding: 80px 0 30px; }
             .hero h1 { font-size: 1.7rem; }
@@ -601,8 +637,12 @@
     <div class="container">
         <a href="../" class="logo">🎲 Generatore Numeri</a>
         <nav class="nav-links">
-            <a href="#strumento">Generatore</a>
-            <a href="#faq">FAQ</a>
+            <a href="./" class="active">Numeri</a>
+            <a href="tombola/">Tombola</a>
+            <a href="ruota/">Ruota</a>
+            <a href="dado/">Dado</a>
+            <a href="testa-o-croce/">Moneta</a>
+            <a href="superenalotto/">Lotto</a>
         </nav>
     </div>
 </header>
@@ -838,6 +878,34 @@
          data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
+
+<section class="altri-strumenti">
+    <div class="container">
+        <h2>Altri strumenti</h2>
+        <div class="strumenti-grid">
+            <a href="tombola/" class="strumento-card">
+                <div class="icon">&#127183;</div>
+                <div class="name">Tombola Online</div>
+            </a>
+            <a href="ruota/" class="strumento-card">
+                <div class="icon">&#127905;</div>
+                <div class="name">Ruota della Fortuna</div>
+            </a>
+            <a href="dado/" class="strumento-card">
+                <div class="icon">&#127922;</div>
+                <div class="name">Dado Online</div>
+            </a>
+            <a href="testa-o-croce/" class="strumento-card">
+                <div class="icon">&#129689;</div>
+                <div class="name">Testa o Croce</div>
+            </a>
+            <a href="superenalotto/" class="strumento-card">
+                <div class="icon">&#127920;</div>
+                <div class="name">SuperEnalotto</div>
+            </a>
+        </div>
+    </div>
+</section>
 
 <footer>
     <div class="container">

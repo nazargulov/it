@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9782800108858107"
+         crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tombola Online — Estrai Numeri da 1 a 90 | Gratis</title>
+    <meta name="description" content="Tombola online gratuita. Estrai numeri da 1 a 90 con animazione, scopri il significato della Smorfia Napoletana. Perfetta per giocare a tombola con amici e famiglia.">
+    <meta name="keywords" content="tombola online, numeri tombola, estrazione tombola, smorfia napoletana, tombola gratis, tombola natale, numeri da 1 a 90, estrai numeri tombola">
+    <link rel="canonical" href="https://nazargulov.github.io/it/generatore/tombola/">
+
+    <meta property="og:title" content="Tombola Online — Estrai Numeri da 1 a 90 | Gratis">
+    <meta property="og:description" content="Estrai numeri per la tombola online. Con Smorfia Napoletana, gratis e senza registrazione.">
+    <meta property="og:url" content="https://nazargulov.github.io/it/generatore/tombola/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Tombola Online",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Tutti",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "description": "Tombola online gratuita. Estrai numeri da 1 a 90 con la Smorfia Napoletana.",
+        "inLanguage": "it",
+        "url": "https://nazargulov.github.io/it/generatore/tombola/"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Come funziona la tombola online?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Clicca 'Estrai numero' per estrarre un numero casuale da 1 a 90. I numeri estratti vengono evidenziati nella griglia e non possono essere estratti di nuovo. Puoi anche vedere il significato della Smorfia Napoletana per ogni numero."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Cos'è la Smorfia Napoletana?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "La Smorfia Napoletana è una tradizione partenopea che associa un significato a ciascun numero da 1 a 90. Viene usata per interpretare i sogni e scegliere i numeri da giocare al Lotto."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "L'estrazione è davvero casuale?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sì. Utilizziamo crypto.getRandomValues(), un generatore crittografico integrato nel browser, che garantisce numeri veramente casuali con elevata entropia."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Posso usarla per giocare a tombola con amici e famiglia?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Assolutamente sì! Questa tombola online è perfetta per le serate in famiglia, a Natale o in qualsiasi occasione. Basta condividere lo schermo o usare un proiettore."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --green: #009246;
+            --green-dark: #006d34;
+            --green-light: rgba(0, 146, 70, 0.08);
+            --red: #CE2B37;
+            --red-dark: #a82230;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        header {
+            background: var(--white);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--green);
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { color: var(--green); }
+        .nav-links a.active { color: var(--green); font-weight: 700; }
+
+        .hero {
+            padding: 100px 0 40px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--green-light) 0%, var(--white) 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span { color: var(--green); }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .tool { padding: 40px 0 60px; }
+
+        .tool-card {
+            background: var(--white);
+            border: 2px solid var(--green);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .tool-card h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 28px;
+            color: var(--green);
+        }
+
+        .btn-generate {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-generate:active { transform: translateY(0); }
+
+        .btn-generate:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            padding: 10px 20px;
+            border: 2px solid var(--green);
+            border-radius: 10px;
+            background: var(--white);
+            color: var(--green);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--green);
+            color: var(--white);
+        }
+
+        .buttons-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Extracted ball */
+        .ball-display {
+            text-align: center;
+            margin: 28px 0;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ball {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            font-weight: 900;
+            box-shadow: 0 6px 20px rgba(206, 43, 55, 0.4);
+            margin: 0 auto;
+        }
+
+        .ball.animating {
+            animation: ballDrop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes ballDrop {
+            0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+            60% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .smorfia-text {
+            margin-top: 12px;
+            font-size: 1.1rem;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        .smorfia-text strong {
+            color: var(--dark);
+            font-style: normal;
+        }
+
+        .extract-count {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .extract-count span {
+            font-weight: 800;
+            color: var(--green);
+        }
+
+        /* Number grid */
+        .grid-section {
+            margin-top: 32px;
+        }
+
+        .grid-section h3 {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 6px;
+        }
+
+        .grid-num {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            background: var(--light);
+            color: var(--gray);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .grid-num.extracted {
+            background: var(--red);
+            color: white;
+            border-color: var(--red);
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(206, 43, 55, 0.3);
+        }
+
+        .grid-num.just-extracted {
+            animation: gridPop 0.4s ease-out;
+        }
+
+        @keyframes gridPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1.05); }
+        }
+
+        /* History */
+        .history-section {
+            margin-top: 24px;
+        }
+
+        .history-section h3 {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .history-numbers {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .history-ball {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        /* Ad */
+        .ad-slot {
+            margin: 30px auto;
+            text-align: center;
+            max-width: 728px;
+        }
+
+        /* Features */
+        .features {
+            padding: 60px 0;
+            background: var(--light);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 28px;
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon { font-size: 32px; margin-bottom: 12px; }
+        .feature-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+        .feature-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+
+        /* FAQ */
+        .faq { padding: 60px 0; }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: var(--white);
+        }
+
+        .faq-q {
+            padding: 18px 24px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-q:hover { background: var(--light); }
+
+        .faq-a {
+            padding: 0 24px 18px;
+            color: var(--gray);
+            display: none;
+        }
+
+        .faq-item.open .faq-a { display: block; }
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+        .faq-arrow { transition: transform 0.2s; font-size: 0.8rem; }
+
+        /* Altri strumenti */
+        .altri-strumenti { padding: 60px 0; background: var(--light); }
+
+        .altri-strumenti h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .strumenti-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .strumento-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+        }
+
+        .strumento-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .strumento-card .icon { font-size: 32px; margin-bottom: 10px; }
+        .strumento-card .name { font-weight: 700; font-size: 0.95rem; }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        footer a { color: #94a3b8; text-decoration: none; }
+        footer a:hover { color: white; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 80px 0 30px; }
+            .hero h1 { font-size: 1.7rem; }
+            .tool-card { padding: 24px; }
+            .number-grid { grid-template-columns: repeat(9, 1fr); gap: 4px; }
+            .grid-num { font-size: 0.75rem; }
+            .ball { width: 80px; height: 80px; font-size: 2.2rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .nav-links { gap: 10px; }
+            .nav-links a { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <a href="../" class="logo">&#127922; Generatore Numeri</a>
+        <nav class="nav-links">
+            <a href="../">Numeri</a>
+            <a href="./" class="active">Tombola</a>
+            <a href="../ruota/">Ruota</a>
+            <a href="../dado/">Dado</a>
+            <a href="../testa-o-croce/">Moneta</a>
+            <a href="../superenalotto/">Lotto</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>Tombola Online &mdash; Estrai <span>Numeri da 1 a 90</span></h1>
+        <p>Estrai numeri per la tombola online. Con la Smorfia Napoletana, perfetta per serate in famiglia e a Natale.</p>
+        <div class="hero-badges">
+            <span class="hero-badge">&#127922; 90 numeri</span>
+            <span class="hero-badge">&#127470;&#127481; Smorfia Napoletana</span>
+            <span class="hero-badge">&#128274; Nessun dato raccolto</span>
+            <span class="hero-badge">&#9889; Gratuito</span>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: top -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="8530102684"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="tool" id="strumento">
+    <div class="tool-card">
+        <h2>&#127183; Estrazione Tombola</h2>
+
+        <button class="btn-generate" id="btn-extract" onclick="extractNumber()">Estrai numero</button>
+
+        <div class="ball-display" id="ball-display">
+            <p style="color:var(--gray)">Clicca il pulsante per estrarre il primo numero</p>
+        </div>
+
+        <div class="extract-count" id="extract-count"></div>
+
+        <div class="buttons-row">
+            <button class="btn-secondary" onclick="resetTombola()">&#128260; Ricomincia</button>
+        </div>
+
+        <div class="grid-section">
+            <h3>Tabellone</h3>
+            <div class="number-grid" id="number-grid"></div>
+        </div>
+
+        <div class="history-section" id="history-section" style="display:none">
+            <h3>Ordine di estrazione</h3>
+            <div class="history-numbers" id="history-numbers"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: middle -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="9271650355"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="features">
+    <div class="container">
+        <h2>Perch&eacute; usare la nostra tombola</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">&#127183;</div>
+                <div class="feature-title">Smorfia Napoletana</div>
+                <div class="feature-desc">Scopri il significato di ogni numero secondo la tradizione napoletana. Cultura e divertimento insieme.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128242;</div>
+                <div class="feature-title">Tabellone digitale</div>
+                <div class="feature-desc">Griglia completa 1-90 con i numeri estratti evidenziati. Visibile su qualsiasi schermo.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#127876;</div>
+                <div class="feature-title">Perfetta per Natale</div>
+                <div class="feature-desc">Ideale per le serate in famiglia durante le feste. Nessun sacchetto di numeri da cercare!</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128274;</div>
+                <div class="feature-title">Crittograficamente sicura</div>
+                <div class="feature-desc">Estrazioni casuali con crypto.getRandomValues() del browser per la massima imparzialit&agrave;.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128196;</div>
+                <div class="feature-title">Storico estrazioni</div>
+                <div class="feature-desc">Tieni traccia dell'ordine esatto di estrazione. Utile per verificare le vincite.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128274;</div>
+                <div class="feature-title">Nessun dato raccolto</div>
+                <div class="feature-desc">Tutto avviene nel tuo browser. Nessuna registrazione, nessun cookie di tracciamento.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq" id="faq">
+    <div class="container">
+        <h2>Domande frequenti</h2>
+        <div class="faq-item open">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Come funziona la tombola online?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">Clicca "Estrai numero" per estrarre un numero casuale da 1 a 90. I numeri estratti vengono evidenziati in rosso nel tabellone e non possono essere estratti di nuovo. Per ogni numero viene mostrato il significato della Smorfia Napoletana.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Cos'&egrave; la Smorfia Napoletana?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">La Smorfia Napoletana &egrave; una tradizione partenopea che associa un significato a ciascun numero da 1 a 90. Viene usata per interpretare i sogni e scegliere i numeri da giocare al Lotto. Ogni numero ha un significato preciso: ad esempio l'1 &egrave; "L'Italia", il 48 &egrave; "Il morto che parla".</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>L'estrazione &egrave; davvero casuale?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">S&igrave;. Utilizziamo crypto.getRandomValues(), un generatore crittografico integrato nel browser, che garantisce numeri veramente casuali con elevata entropia. Nessun algoritmo pu&ograve; prevedere il prossimo numero.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Posso usarla per giocare a tombola con amici e famiglia?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">Assolutamente s&igrave;! Questa tombola online &egrave; perfetta per le serate in famiglia, a Natale o in qualsiasi occasione. Basta condividere lo schermo o usare un proiettore. Ogni giocatore pu&ograve; usare le proprie cartelle fisiche.</div>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: bottom -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="3667969888"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="altri-strumenti">
+    <div class="container">
+        <h2>Altri strumenti</h2>
+        <div class="strumenti-grid">
+            <a href="../" class="strumento-card">
+                <div class="icon">&#128290;</div>
+                <div class="name">Generatore Numeri</div>
+            </a>
+            <a href="../ruota/" class="strumento-card">
+                <div class="icon">&#127905;</div>
+                <div class="name">Ruota della Fortuna</div>
+            </a>
+            <a href="../dado/" class="strumento-card">
+                <div class="icon">&#127922;</div>
+                <div class="name">Dado Online</div>
+            </a>
+            <a href="../testa-o-croce/" class="strumento-card">
+                <div class="icon">&#129689;</div>
+                <div class="name">Testa o Croce</div>
+            </a>
+            <a href="../superenalotto/" class="strumento-card">
+                <div class="icon">&#127920;</div>
+                <div class="name">SuperEnalotto</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Tombola Online &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="../termini.html">Termini di Utilizzo</a> &middot; <a href="../../">Strumenti IT</a></p>
+    </div>
+</footer>
+
+<script>
+// Smorfia Napoletana
+var smorfia = {
+    1:"L'Italia",2:"La bambina",3:"La gatta",4:"Il maiale",5:"La mano",
+    6:"Quella che guarda per terra",7:"Il vaso di creta",8:"La Madonna",9:"La figliolanza",10:"I fagioli",
+    11:"I topi",12:"Il soldato",13:"Sant'Antonio",14:"L'ubriaco",15:"Il ragazzo",
+    16:"Il sedere",17:"La sfortuna",18:"Il sangue",19:"La risata",20:"La festa",
+    21:"La donna nuda",22:"Il pazzo",23:"Lo scemo",24:"Le guardie",25:"Natale",
+    26:"Nanninella",27:"Il pitale",28:"Le zizze",29:"Il padre dei bambini",30:"Le palle del tenente",
+    31:"Il padrone di casa",32:"Il capitone",33:"Gli anni di Cristo",34:"La testa",35:"L'uccellino",
+    36:"Le nacchere",37:"Il monaco",38:"Le botte",39:"La corda al collo",40:"La noia",
+    41:"Il coltello",42:"Il caff&egrave;",43:"La donna al balcone",44:"La prigione",45:"Il vino buono",
+    46:"I soldi",47:"Il morto",48:"Il morto che parla",49:"La carne",50:"Il pane",
+    51:"Il giardino",52:"La mamma",53:"Il vecchio",54:"Il cappello",55:"La musica",
+    56:"La caduta",57:"Il gobbo",58:"Il pacco",59:"I peli",60:"Il lamento",
+    61:"Il cacciatore",62:"Il morto ammazzato",63:"La sposa",64:"La sciammeria",65:"Il pianto",
+    66:"Le due zitelle",67:"Il totano nella chitarra",68:"La zuppa cotta",69:"Sottosopra",70:"Il palazzo",
+    71:"L'uomo di niente",72:"La meraviglia",73:"L'ospedale",74:"La grotta",75:"Pulcinella",
+    76:"La fontana",77:"I diavoli",78:"La bella figliola",79:"Il ladro",80:"La bocca",
+    81:"I fiori",82:"La tavola imbandita",83:"Il maltempo",84:"La chiesa",85:"L'anima del Purgatorio",
+    86:"La bottega",87:"I pidocchi",88:"I caciocavalli",89:"La vecchia",90:"La paura"
+};
+
+var extracted = [];
+var remaining = [];
+
+function secureRandom(min, max) {
+    var range = max - min + 1;
+    var array = new Uint32Array(1);
+    crypto.getRandomValues(array);
+    return min + (array[0] % range);
+}
+
+function initGrid() {
+    var grid = document.getElementById('number-grid');
+    grid.innerHTML = '';
+    for (var i = 1; i <= 90; i++) {
+        var cell = document.createElement('div');
+        cell.className = 'grid-num';
+        cell.id = 'grid-' + i;
+        cell.textContent = i;
+        grid.appendChild(cell);
+    }
+}
+
+function resetTombola() {
+    extracted = [];
+    remaining = [];
+    for (var i = 1; i <= 90; i++) remaining.push(i);
+    initGrid();
+    document.getElementById('ball-display').innerHTML = '<p style="color:var(--gray)">Clicca il pulsante per estrarre il primo numero</p>';
+    document.getElementById('extract-count').textContent = '';
+    document.getElementById('history-numbers').innerHTML = '';
+    document.getElementById('history-section').style.display = 'none';
+    document.getElementById('btn-extract').disabled = false;
+}
+
+function extractNumber() {
+    if (remaining.length === 0) return;
+
+    var idx = secureRandom(0, remaining.length - 1);
+    var num = remaining[idx];
+    remaining.splice(idx, 1);
+    extracted.push(num);
+
+    // Show ball
+    var display = document.getElementById('ball-display');
+    display.innerHTML = '<div class="ball animating">' + num + '</div>' +
+        '<div class="smorfia-text"><strong>' + num + '</strong> &mdash; ' + smorfia[num] + '</div>';
+
+    // Update count
+    document.getElementById('extract-count').innerHTML = 'Numeri estratti: <span>' + extracted.length + '</span> / 90';
+
+    // Highlight in grid
+    var cell = document.getElementById('grid-' + num);
+    cell.classList.add('extracted', 'just-extracted');
+    setTimeout(function() { cell.classList.remove('just-extracted'); }, 500);
+
+    // Add to history
+    var hist = document.getElementById('history-numbers');
+    var ball = document.createElement('div');
+    ball.className = 'history-ball';
+    ball.textContent = num;
+    hist.appendChild(ball);
+    document.getElementById('history-section').style.display = 'block';
+
+    // Disable if all extracted
+    if (remaining.length === 0) {
+        document.getElementById('btn-extract').disabled = true;
+    }
+}
+
+// Init
+resetTombola();
+</script>
+
+</body>
+</html>

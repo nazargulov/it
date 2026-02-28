@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9782800108858107"
+         crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dado Online — Lancia i Dadi Virtuali | Gratis</title>
+    <meta name="description" content="Dado online gratuito. Lancia dadi virtuali D4, D6, D8, D10, D12, D20, D100. Perfetto per giochi da tavolo, D&amp;D, e decisioni casuali. Con notazione dadi e storico lanci.">
+    <meta name="keywords" content="dado online, lancio dado, dadi virtuali, dado virtuale, tira dado, lancia dado, D20, D6, dadi D&D, dadi gioco di ruolo, dado casuale">
+    <link rel="canonical" href="https://nazargulov.github.io/it/generatore/dado/">
+
+    <meta property="og:title" content="Dado Online — Lancia i Dadi Virtuali | Gratis">
+    <meta property="og:description" content="Lancia dadi virtuali D4-D100. Perfetto per giochi da tavolo e D&amp;D. Gratis e senza registrazione.">
+    <meta property="og:url" content="https://nazargulov.github.io/it/generatore/dado/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Dado Online",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Tutti",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "description": "Dado online gratuito. Lancia dadi virtuali D4, D6, D8, D10, D12, D20, D100.",
+        "inLanguage": "it",
+        "url": "https://nazargulov.github.io/it/generatore/dado/"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Quali tipi di dadi posso lanciare?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Puoi lanciare D4, D6 (dado classico), D8, D10, D12, D20 e D100. Puoi lanciare da 1 a 10 dadi contemporaneamente. Tutti i tipi di dadi usati nei giochi di ruolo come D&D."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Cos'è la notazione D&D per i dadi?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "La notazione D&D segue il formato NdX+M dove N è il numero di dadi, X il numero di facce e M un modificatore. Ad esempio: 2d6+3 significa 'lancia 2 dadi a 6 facce e aggiungi 3 al totale'."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "I lanci sono davvero casuali?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sì. Utilizziamo crypto.getRandomValues(), un generatore crittografico integrato nel browser, che produce risultati con elevata entropia. Ogni lancio è completamente indipendente e imprevedibile."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Posso usare i dadi per D&D e giochi di ruolo?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Assolutamente sì! Supportiamo tutti i dadi standard per D&D e altri GDR: D4, D6, D8, D10, D12 e D20. Puoi anche usare la modalità notazione per lanci complessi come 2d6+3 o 1d20+5."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --green: #009246;
+            --green-dark: #006d34;
+            --green-light: rgba(0, 146, 70, 0.08);
+            --red: #CE2B37;
+            --red-dark: #a82230;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        header {
+            background: var(--white);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--green);
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { color: var(--green); }
+        .nav-links a.active { color: var(--green); font-weight: 700; }
+
+        .hero {
+            padding: 100px 0 40px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--green-light) 0%, var(--white) 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span { color: var(--green); }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .tool { padding: 40px 0 60px; }
+
+        .tool-card {
+            background: var(--white);
+            border: 2px solid var(--green);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .tool-card h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 28px;
+            color: var(--green);
+        }
+
+        .tool-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 28px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tool-tab {
+            padding: 8px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: var(--white);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            color: var(--gray);
+        }
+
+        .tool-tab:hover { border-color: var(--green); color: var(--green); }
+        .tool-tab.active { background: var(--green); color: white; border-color: var(--green); }
+
+        .tool-panel { display: none; }
+        .tool-panel.active { display: block; }
+
+        .form-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group { flex: 1; }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--gray);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: border-color 0.2s;
+            background: var(--light);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        .btn-generate {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-generate:active { transform: translateY(0); }
+
+        /* Dice display */
+        .dice-container {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin: 24px 0;
+            flex-wrap: wrap;
+        }
+
+        .die {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border: 3px solid var(--green);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .die.rolling {
+            animation: roll 0.4s ease-out;
+        }
+
+        @keyframes roll {
+            0% { transform: rotate(0deg) scale(0.8); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .die svg { width: 60px; height: 60px; }
+
+        .die-number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--green);
+        }
+
+        .dice-total {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-top: 10px;
+        }
+
+        .dice-total span {
+            font-weight: 800;
+            color: var(--green);
+            font-size: 1.3rem;
+        }
+
+        /* D&D notation */
+        .notation-input {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .notation-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: var(--light);
+            font-family: monospace;
+        }
+
+        .notation-input input:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        .notation-examples {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .notation-ex {
+            padding: 6px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: var(--white);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray);
+            font-family: monospace;
+            transition: all 0.2s;
+        }
+
+        .notation-ex:hover { border-color: var(--green); color: var(--green); }
+
+        .notation-result {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--green-light), rgba(0, 146, 70, 0.04));
+            border-radius: 14px;
+            display: none;
+            margin-top: 16px;
+        }
+
+        .notation-result.visible { display: block; }
+
+        .notation-breakdown {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin-bottom: 8px;
+            font-family: monospace;
+        }
+
+        .notation-total {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--green);
+        }
+
+        /* History */
+        .history-section {
+            margin-top: 24px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+
+        .history-section h3 {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .history-entry {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .history-entry:nth-child(odd) { background: var(--light); }
+
+        .history-entry .values { font-weight: 600; }
+        .history-entry .total { font-weight: 800; color: var(--green); }
+
+        .btn-clear {
+            display: block;
+            margin: 10px auto 0;
+            padding: 6px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: var(--white);
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: var(--gray);
+            transition: all 0.2s;
+        }
+
+        .btn-clear:hover { border-color: var(--red); color: var(--red); }
+
+        /* Quick roll buttons */
+        .quick-rolls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .quick-roll {
+            padding: 10px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: var(--white);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            color: var(--dark);
+        }
+
+        .quick-roll:hover { border-color: var(--green); color: var(--green); }
+
+        /* Ad */
+        .ad-slot {
+            margin: 30px auto;
+            text-align: center;
+            max-width: 728px;
+        }
+
+        .features {
+            padding: 60px 0;
+            background: var(--light);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 28px;
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon { font-size: 32px; margin-bottom: 12px; }
+        .feature-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+        .feature-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+
+        .faq { padding: 60px 0; }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: var(--white);
+        }
+
+        .faq-q {
+            padding: 18px 24px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-q:hover { background: var(--light); }
+
+        .faq-a {
+            padding: 0 24px 18px;
+            color: var(--gray);
+            display: none;
+        }
+
+        .faq-item.open .faq-a { display: block; }
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+        .faq-arrow { transition: transform 0.2s; font-size: 0.8rem; }
+
+        .altri-strumenti { padding: 60px 0; background: var(--light); }
+
+        .altri-strumenti h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .strumenti-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .strumento-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+        }
+
+        .strumento-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .strumento-card .icon { font-size: 32px; margin-bottom: 10px; }
+        .strumento-card .name { font-weight: 700; font-size: 0.95rem; }
+
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        footer a { color: #94a3b8; text-decoration: none; }
+        footer a:hover { color: white; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 80px 0 30px; }
+            .hero h1 { font-size: 1.7rem; }
+            .tool-card { padding: 24px; }
+            .form-row { flex-direction: column; gap: 12px; }
+            .die { width: 60px; height: 60px; }
+            .die svg { width: 44px; height: 44px; }
+            .die-number { font-size: 1.8rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .nav-links { gap: 10px; }
+            .nav-links a { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <a href="../" class="logo">&#127922; Generatore Numeri</a>
+        <nav class="nav-links">
+            <a href="../">Numeri</a>
+            <a href="../tombola/">Tombola</a>
+            <a href="../ruota/">Ruota</a>
+            <a href="./" class="active">Dado</a>
+            <a href="../testa-o-croce/">Moneta</a>
+            <a href="../superenalotto/">Lotto</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>Dado Online &mdash; Lancia i <span>Dadi Virtuali</span></h1>
+        <p>Lancia dadi virtuali D4, D6, D8, D10, D12, D20 e D100. Perfetto per giochi da tavolo, D&amp;D e decisioni casuali.</p>
+        <div class="hero-badges">
+            <span class="hero-badge">&#127922; D4&ndash;D100</span>
+            <span class="hero-badge">&#9876;&#65039; Modalit&agrave; D&amp;D</span>
+            <span class="hero-badge">&#128274; Nessun dato raccolto</span>
+            <span class="hero-badge">&#9889; Gratuito</span>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: top -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="8530102684"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="tool" id="strumento">
+    <div class="tool-card">
+        <div class="tool-tabs">
+            <button class="tool-tab active" data-tab="standard">&#127922; Lancio Standard</button>
+            <button class="tool-tab" data-tab="dnd">&#9876;&#65039; Notazione D&amp;D</button>
+        </div>
+
+        <!-- Standard mode -->
+        <div class="tool-panel active" id="panel-standard">
+            <div class="quick-rolls">
+                <button class="quick-roll" onclick="quickRoll(1,6)">1d6</button>
+                <button class="quick-roll" onclick="quickRoll(2,6)">2d6</button>
+                <button class="quick-roll" onclick="quickRoll(1,20)">1d20</button>
+                <button class="quick-roll" onclick="quickRoll(4,6)">4d6</button>
+                <button class="quick-roll" onclick="quickRoll(1,100)">1d100</button>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Numero di dadi</label>
+                    <select id="dice-count">
+                        <option value="1">1 dado</option>
+                        <option value="2" selected>2 dadi</option>
+                        <option value="3">3 dadi</option>
+                        <option value="4">4 dadi</option>
+                        <option value="5">5 dadi</option>
+                        <option value="6">6 dadi</option>
+                        <option value="7">7 dadi</option>
+                        <option value="8">8 dadi</option>
+                        <option value="9">9 dadi</option>
+                        <option value="10">10 dadi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tipo di dado</label>
+                    <select id="dice-sides">
+                        <option value="4">D4</option>
+                        <option value="6" selected>D6 (classico)</option>
+                        <option value="8">D8</option>
+                        <option value="10">D10</option>
+                        <option value="12">D12</option>
+                        <option value="20">D20</option>
+                        <option value="100">D100</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn-generate" onclick="rollDice()">Lancia i dadi</button>
+            <div class="dice-container" id="dice-container"></div>
+            <div class="dice-total" id="dice-total"></div>
+        </div>
+
+        <!-- D&D notation mode -->
+        <div class="tool-panel" id="panel-dnd">
+            <div class="notation-examples">
+                <button class="notation-ex" onclick="setNotation('2d6+3')">2d6+3</button>
+                <button class="notation-ex" onclick="setNotation('1d20+5')">1d20+5</button>
+                <button class="notation-ex" onclick="setNotation('4d6')">4d6</button>
+                <button class="notation-ex" onclick="setNotation('8d6')">8d6</button>
+                <button class="notation-ex" onclick="setNotation('1d12+2')">1d12+2</button>
+                <button class="notation-ex" onclick="setNotation('3d8-1')">3d8-1</button>
+            </div>
+            <div class="notation-input">
+                <input type="text" id="notation-field" placeholder="Es: 2d6+3" value="2d6+3">
+            </div>
+            <button class="btn-generate" onclick="rollNotation()">Lancia</button>
+            <div class="notation-result" id="notation-result">
+                <div class="notation-breakdown" id="notation-breakdown"></div>
+                <div class="notation-total" id="notation-total"></div>
+            </div>
+        </div>
+
+        <div class="history-section" id="history-section" style="display:none">
+            <h3>Storico lanci</h3>
+            <div class="history-list" id="history-list"></div>
+            <button class="btn-clear" onclick="clearHistory()">Cancella storico</button>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: middle -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="9271650355"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="features">
+    <div class="container">
+        <h2>Perch&eacute; usare il nostro dado online</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">&#127922;</div>
+                <div class="feature-title">7 tipi di dadi</div>
+                <div class="feature-desc">D4, D6, D8, D10, D12, D20 e D100. Tutti i dadi necessari per qualsiasi gioco da tavolo o di ruolo.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9876;&#65039;</div>
+                <div class="feature-title">Modalit&agrave; D&amp;D</div>
+                <div class="feature-desc">Usa la notazione standard dei giochi di ruolo: 2d6+3, 1d20+5, 4d6. Con breakdown dettagliato.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128196;</div>
+                <div class="feature-title">Storico lanci</div>
+                <div class="feature-desc">Tieni traccia di tutti i lanci. Utile per sessioni di gioco lunghe e per verificare i risultati.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128274;</div>
+                <div class="feature-title">Crittograficamente sicuro</div>
+                <div class="feature-desc">Utilizziamo crypto.getRandomValues() per lanci veramente casuali. Nessun trucco possibile.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9889;</div>
+                <div class="feature-title">Lancio rapido</div>
+                <div class="feature-desc">Pulsanti rapidi per i lanci pi&ugrave; comuni: 1d6, 2d6, 1d20. Un solo click per giocare.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128242;</div>
+                <div class="feature-title">Funziona ovunque</div>
+                <div class="feature-desc">Smartphone, tablet o computer. I dadi sono sempre in tasca, senza app da scaricare.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq" id="faq">
+    <div class="container">
+        <h2>Domande frequenti</h2>
+        <div class="faq-item open">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Quali tipi di dadi posso lanciare?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">Puoi lanciare D4, D6 (dado classico), D8, D10, D12, D20 e D100. Puoi lanciare da 1 a 10 dadi contemporaneamente. Tutti i tipi di dadi usati nei giochi di ruolo come D&amp;D.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Cos'&egrave; la notazione D&amp;D per i dadi?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">La notazione segue il formato NdX+M dove N &egrave; il numero di dadi, X il numero di facce e M un modificatore opzionale. Ad esempio: 2d6+3 significa "lancia 2 dadi a 6 facce e aggiungi 3 al totale". Puoi anche usare il segno meno: 1d20-2.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>I lanci sono davvero casuali?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">S&igrave;. Utilizziamo crypto.getRandomValues(), un generatore crittografico integrato nel browser, che produce risultati con elevata entropia. Ogni lancio &egrave; completamente indipendente e imprevedibile.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                <span>Posso usare i dadi per D&amp;D e giochi di ruolo?</span>
+                <span class="faq-arrow">&#9660;</span>
+            </div>
+            <div class="faq-a">Assolutamente s&igrave;! Supportiamo tutti i dadi standard per D&amp;D e altri GDR. Puoi anche usare la modalit&agrave; notazione per lanci complessi come 2d6+3 o 1d20+5.</div>
+        </div>
+    </div>
+</section>
+
+<!-- Ad slot: bottom -->
+<div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9782800108858107"
+         data-ad-slot="3667969888"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<section class="altri-strumenti">
+    <div class="container">
+        <h2>Altri strumenti</h2>
+        <div class="strumenti-grid">
+            <a href="../" class="strumento-card">
+                <div class="icon">&#128290;</div>
+                <div class="name">Generatore Numeri</div>
+            </a>
+            <a href="../tombola/" class="strumento-card">
+                <div class="icon">&#127183;</div>
+                <div class="name">Tombola Online</div>
+            </a>
+            <a href="../ruota/" class="strumento-card">
+                <div class="icon">&#127905;</div>
+                <div class="name">Ruota della Fortuna</div>
+            </a>
+            <a href="../testa-o-croce/" class="strumento-card">
+                <div class="icon">&#129689;</div>
+                <div class="name">Testa o Croce</div>
+            </a>
+            <a href="../superenalotto/" class="strumento-card">
+                <div class="icon">&#127920;</div>
+                <div class="name">SuperEnalotto</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Dado Online &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="../termini.html">Termini di Utilizzo</a> &middot; <a href="../../">Strumenti IT</a></p>
+    </div>
+</footer>
+
+<script>
+function secureRandom(min, max) {
+    var range = max - min + 1;
+    var array = new Uint32Array(1);
+    crypto.getRandomValues(array);
+    return min + (array[0] % range);
+}
+
+// Tab switching
+document.querySelectorAll('.tool-tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+        document.querySelectorAll('.tool-tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.tool-panel').forEach(function(p) { p.classList.remove('active'); });
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+});
+
+// SVG dice face for D6
+function d6Face(val) {
+    var dots = {
+        1: [[35,35]],
+        2: [[15,15],[55,55]],
+        3: [[15,15],[35,35],[55,55]],
+        4: [[15,15],[55,15],[15,55],[55,55]],
+        5: [[15,15],[55,15],[35,35],[15,55],[55,55]],
+        6: [[15,15],[55,15],[15,35],[55,35],[15,55],[55,55]]
+    };
+    var svg = '<svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">';
+    var positions = dots[val] || [[35,35]];
+    for (var i = 0; i < positions.length; i++) {
+        svg += '<circle cx="' + positions[i][0] + '" cy="' + positions[i][1] + '" r="7" fill="#009246"/>';
+    }
+    svg += '</svg>';
+    return svg;
+}
+
+var history = [];
+
+function rollDice() {
+    var count = parseInt(document.getElementById('dice-count').value);
+    var sides = parseInt(document.getElementById('dice-sides').value);
+    var container = document.getElementById('dice-container');
+    container.innerHTML = '';
+
+    var values = [];
+    var total = 0;
+    for (var i = 0; i < count; i++) {
+        var val = secureRandom(1, sides);
+        values.push(val);
+        total += val;
+
+        var die = document.createElement('div');
+        die.className = 'die rolling';
+
+        if (sides === 6) {
+            die.innerHTML = d6Face(val);
+        } else {
+            die.innerHTML = '<span class="die-number">' + val + '</span>';
+        }
+
+        container.appendChild(die);
+    }
+
+    var totalEl = document.getElementById('dice-total');
+    totalEl.innerHTML = count > 1 ? 'Totale: <span>' + total + '</span>' : '';
+
+    addHistory(count + 'd' + sides, values, total);
+}
+
+function quickRoll(count, sides) {
+    document.getElementById('dice-count').value = count;
+    document.getElementById('dice-sides').value = sides;
+    rollDice();
+}
+
+// D&D notation parser
+function setNotation(val) {
+    document.getElementById('notation-field').value = val;
+}
+
+function parseNotation(str) {
+    str = str.toLowerCase().replace(/\s/g, '');
+    var match = str.match(/^(\d+)d(\d+)([+-]\d+)?$/);
+    if (!match) return null;
+    return {
+        count: parseInt(match[1]),
+        sides: parseInt(match[2]),
+        modifier: match[3] ? parseInt(match[3]) : 0
+    };
+}
+
+function rollNotation() {
+    var input = document.getElementById('notation-field').value;
+    var parsed = parseNotation(input);
+    if (!parsed || parsed.count < 1 || parsed.count > 100 || parsed.sides < 2 || parsed.sides > 1000) {
+        document.getElementById('notation-result').classList.remove('visible');
+        return;
+    }
+
+    var values = [];
+    var total = 0;
+    for (var i = 0; i < parsed.count; i++) {
+        var val = secureRandom(1, parsed.sides);
+        values.push(val);
+        total += val;
+    }
+
+    var finalTotal = total + parsed.modifier;
+    var breakdown = '[' + values.join(', ') + ']';
+    if (parsed.modifier !== 0) {
+        breakdown += (parsed.modifier > 0 ? ' + ' : ' - ') + Math.abs(parsed.modifier);
+    }
+
+    document.getElementById('notation-breakdown').textContent = input + ' = ' + breakdown;
+    document.getElementById('notation-total').textContent = finalTotal;
+    document.getElementById('notation-result').classList.add('visible');
+
+    var label = input;
+    addHistory(label, values, finalTotal);
+}
+
+function addHistory(label, values, total) {
+    history.unshift({ label: label, values: values, total: total });
+    if (history.length > 50) history.pop();
+    renderHistory();
+}
+
+function renderHistory() {
+    var list = document.getElementById('history-list');
+    list.innerHTML = '';
+    for (var i = 0; i < history.length; i++) {
+        var entry = document.createElement('div');
+        entry.className = 'history-entry';
+        entry.innerHTML = '<span class="values">' + history[i].label + ': [' + history[i].values.join(', ') + ']</span><span class="total">' + history[i].total + '</span>';
+        list.appendChild(entry);
+    }
+    document.getElementById('history-section').style.display = history.length > 0 ? 'block' : 'none';
+}
+
+function clearHistory() {
+    history = [];
+    renderHistory();
+}
+
+// Enter key for notation
+document.getElementById('notation-field').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') rollNotation();
+});
+</script>
+
+</body>
+</html>
